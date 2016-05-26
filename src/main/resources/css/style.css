@@ -2,14 +2,22 @@ table {
 	width: 100%;
 }
 
-form {
+form p {
 	margin: 30px;
+	float: left;
+}
+
+.clear {
+	clear: both;
+}
+
+tr {
+	color: white;
 }
 
 td {
 	width: 50%;
 	padding: 10px;
-	color: white;
 }
 
 td a {
@@ -19,29 +27,29 @@ td a {
 	text-decoration: none;
 }
 
-.info {
+tr.info {
 	background-color: #2980b9;
 }
 
-.deleted {
+tr.deleted {
 	background-color: #e74c3c;
 }
 
-.added {
+tr.added {
 	background-color: #27ae60;
 }
 
-.range {
+tr.range {
 	background-color: #800080;
 }
 
-.same {
-	background-color: #eeeeee;
+tr.same {
+	background-color: #ecf0f1;
 	color: black !important;
 }
 
-.renamed td {
-	background-color: #eeeeee;
+tr.diff {
+	background-color: #ecf0f1;
 	color: black !important;
 }
 

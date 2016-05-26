@@ -1,0 +1,5 @@
+	<span class="info">--- /home/iyuki/Dokumenty/p2diff/target/test-classes/text1.txt</span>
+	<span class="info">+++ /home/iyuki/Dokumenty/p2diff/target/test-classes/text2.txt</span>
+	<span class="range">@@ -1,1 +1,1 @@</span>
+	<span class="deleted">-Lore isum dlor st aet</span>
+	<span class="added">+Lorem ipsum dolor sit amet</span>

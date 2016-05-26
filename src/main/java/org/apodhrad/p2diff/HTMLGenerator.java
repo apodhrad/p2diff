@@ -46,6 +46,6 @@ public class HTMLGenerator {
 	{
 		cfg = new Configuration(Configuration.VERSION_2_3_22);
 		cfg.setDefaultEncoding("UTF-8");
-		cfg.setDirectoryForTemplateLoading(new File(this.getClass().getResource("/").getFile()));
+		cfg.setDirectoryForTemplateLoading(new File(this.getClass().getResource("/templates").getFile()));
 	}
 }
