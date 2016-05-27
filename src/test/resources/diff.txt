@@ -1,0 +1,5 @@
+--- text1.txt
++++ text2.txt
+@@ -1,1 +1,1 @@
+-Lore isum dlor st aet
++Lorem ipsum dolor sit amet

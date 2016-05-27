@@ -19,42 +19,42 @@ import freemarker.template.Template;
 public class DiffForFile {
 
 	/**
-	 * Path to the original file
-	 */
-	private String originalPath;
-
-	/**
-	 * Path to the revised file
-	 */
-	private String revisedPath;
-
-	private List<String> originalLines;
-	private List<String> revisedLines;
-
-	/**
 	 * Wrapping tag name
 	 */
-	private String tag = "span";
+	public static final String TAG = "span";
 
-	private List<String> unifiedDiff;
+	private File baseDir;
+
+	private File originalFile;
+	private File revisedFile;
 
 	private Configuration cfg;
 	public String template = "hidden.html";
 
 	/**
-	 * Assign paths and load files
 	 * 
 	 * @param originalPath
 	 * @param revisedPath
 	 * @throws IOException
 	 * @throws URISyntaxException
 	 */
-	DiffForFile(String originalPath, String revisedPath) throws IOException, URISyntaxException {
-		this.originalPath = originalPath;
-		this.revisedPath = revisedPath;
+	public DiffForFile(File originalFile, File revisedFile) throws IOException {
+		this.originalFile = originalFile;
+		this.revisedFile = revisedFile;
+	}
 
-		originalLines = FileUtils.readLines(new File(originalPath));
-		revisedLines = FileUtils.readLines(new File(revisedPath));
+	public void setBaseDir(File baseDir) {
+		if (!baseDir.exists()) {
+			throw new IllegalArgumentException();
+		}
+		if (!baseDir.isDirectory()) {
+			throw new IllegalArgumentException();
+		}
+		this.baseDir = baseDir;
+	}
+
+	public File getBaseDir() {
+		return baseDir;
 	}
 
 	/**
@@ -80,6 +80,26 @@ public class DiffForFile {
 		return result;
 	}
 
+	public List<String> getDiff() throws IOException {
+		List<String> originalLines = FileUtils.readLines(originalFile);
+		List<String> revisedLines = FileUtils.readLines(revisedFile);
+
+		Patch patch = DiffUtils.diff(originalLines, revisedLines);
+		if (patch.getDeltas().isEmpty()) {
+			return new ArrayList<String>();
+		}
+
+		String originalPath = originalFile.getPath();
+		String revisedPath = revisedFile.getPath();
+
+		if (baseDir != null) {
+			originalPath = baseDir.toURI().relativize(originalFile.toURI()).getPath();
+			revisedPath = baseDir.toURI().relativize(revisedFile.toURI()).getPath();
+		}
+
+		return DiffUtils.generateUnifiedDiff(originalPath, revisedPath, originalLines, patch, 1);
+	}
+
 	/**
 	 * Generate tag
 	 * 
@@ -90,7 +110,7 @@ public class DiffForFile {
 	 * @return
 	 */
 	private String generateTag(String className, String content) {
-		return "<" + tag + " class=\"" + className + "\">" + content + "</" + tag + ">";
+		return "<" + TAG + " class=\"" + className + "\">" + content + "</" + TAG + ">";
 	}
 
 	/**
@@ -100,37 +120,22 @@ public class DiffForFile {
 	 * @throws Exception
 	 */
 	public String generate() throws Exception {
-		Patch patch = null;
-
-		try {
-			patch = DiffUtils.diff(originalLines, revisedLines);
-		} catch (Exception e) {
-			e.printStackTrace();
+		List<String> htmlDiff = new ArrayList<String>();
+		for (String line : getDiff()) {
+			htmlDiff.add(this.convertToHTML(line));
 		}
 
-		if (!originalLines.equals(revisedLines)) {
+		configurateTemplateSystem();
 
-			unifiedDiff = DiffUtils.generateUnifiedDiff(originalPath, revisedPath, originalLines, patch, 1);
+		Template temp = cfg.getTemplate(this.template);
 
-			List<String> htmlDiff = new ArrayList<String>();
-			for (String line : unifiedDiff) {
-				htmlDiff.add(this.convertToHTML(line));
-			}
+		Map<String, Object> root = new HashMap<String, Object>();
+		root.put("diff", htmlDiff);
 
-			configurateTemplateSystem();
+		StringWriter sw = new StringWriter();
+		temp.process(root, sw);
 
-			Template temp = cfg.getTemplate(this.template);
-
-			Map<String, Object> root = new HashMap<String, Object>();
-			root.put("diff", htmlDiff);
-
-			StringWriter sw = new StringWriter();
-			temp.process(root, sw);
-
-			return sw.toString();
-		}
-
-		return "";
+		return sw.toString();
 	}
 
 	private void configurateTemplateSystem() throws IOException {
@@ -139,17 +144,4 @@ public class DiffForFile {
 		cfg.setClassForTemplateLoading(this.getClass(), "/templates");
 	}
 
-	//// SETTERS AND GETTERS
-
-	public void setTag(String tag) {
-		this.tag = tag;
-	}
-
-	public String getTag() {
-		return this.tag;
-	}
-
-	public List<String> getDiff() {
-		return unifiedDiff;
-	}
 }

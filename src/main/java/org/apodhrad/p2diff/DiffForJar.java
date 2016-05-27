@@ -95,9 +95,7 @@ public class DiffForJar {
 								diff.put(getName(files1.get(i), originalResource), Status.SAME);
 							}
 						} else {
-							DiffForFile dff = new DiffForFile(files1.get(i).getAbsolutePath(),
-									files2.get(y).getAbsolutePath());
-							dff.setTag("span");
+							DiffForFile dff = new DiffForFile(files1.get(i), files2.get(y));
 							String generated = dff.generate();
 
 							if (generated.equals(""))
