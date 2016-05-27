@@ -35,6 +35,6 @@ public class DiffManagerTest {
 		
 		File diff = new File("target/diffs/diff.html");
 		DiffManager dm = new DiffManager(unpackZip1, unpackZip2, "(.*)", diff);
-		FileUtils.writeStringToFile(diff, dm.generateHTML());
+		dm.generate();
 	}
 }

@@ -2,12 +2,15 @@ package org.apodhrad.p2diff;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.StringWriter;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.FilenameUtils;
+import org.apache.commons.io.IOUtils;
 
 import com.google.common.io.Files;
 
@@ -80,9 +83,10 @@ public class DiffManager {
 	
 	/**
 	 * Generate diff as a map and save
+	 * @throws IOException 
 	 * @throws Exception
 	 */
-	private void generateDiff() throws Exception
+	private void generateDiff() throws IOException 
 	{
 		ArrayList<File> filesInZip1 = new ArrayList<File>();
 		ArrayList<File> filesInZip2 = new ArrayList<File>();;
@@ -146,9 +150,11 @@ public class DiffManager {
 	/**
 	 * Generate HTML and return it
 	 * @return
+	 * @throws IOException 
+	 * @throws TemplateException 
 	 * @throws Exception
 	 */
-	public String generateHTML() throws Exception
+	public String generateHTML() throws IOException, TemplateException 
 	{
 		generateDiff();
 		
@@ -164,4 +170,21 @@ public class DiffManager {
 		HTMLGenerator generator = new HTMLGenerator(diff);
 		return generator.generateHTML("layout.html");
 	}
+	
+	public void generate() throws IOException, TemplateException {
+		InputStream css = Diff.class.getResourceAsStream("/css/style.css");
+		InputStream js = Diff.class.getResourceAsStream("/js/script.js");
+		
+		FileUtils.writeStringToFile(new File(target.getParent() + "/css/style.css"), readInputStream(css));
+		FileUtils.writeStringToFile(new File(target.getParent() + "/js/script.js"), readInputStream(js));
+		
+		FileUtils.writeStringToFile(target, generateHTML());
+	}
+	
+	private static String readInputStream(InputStream is) throws IOException {
+		StringWriter writer = new StringWriter();
+		IOUtils.copy(is, writer);
+		return writer.toString();
+	}
+	
 }
