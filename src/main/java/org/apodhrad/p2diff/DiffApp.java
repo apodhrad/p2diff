@@ -15,7 +15,7 @@ import org.apache.commons.io.IOUtils;
 import org.apodhrad.jdownload.manager.JDownloadManager;
 import org.apodhrad.jdownload.manager.util.UnpackUtils;
 
-public class Diff {
+public class DiffApp {
 
 	private static boolean separator;
 
@@ -30,7 +30,7 @@ public class Diff {
 	public static void main(String[] args) {
 		try {
 			if (args.length == 0) {
-				System.out.println(IOUtils.toString(Diff.class.getResourceAsStream("/help.txt")));
+				System.out.println(IOUtils.toString(DiffApp.class.getResourceAsStream("/help.txt")));
 			} else {
 				if (args[0].equals("-f")) {
 					Properties settings = new Properties();
@@ -59,8 +59,8 @@ public class Diff {
 				DiffManager dm = new DiffManager(unpackZip1, unpackZip2, filter, target);
 				FileUtils.writeStringToFile(target, dm.generateHTML());
 
-				InputStream css = Diff.class.getResourceAsStream("/css/style.css");
-				InputStream js = Diff.class.getResourceAsStream("/js/script.js");
+				InputStream css = DiffApp.class.getResourceAsStream("/css/style.css");
+				InputStream js = DiffApp.class.getResourceAsStream("/js/script.js");
 
 				FileUtils.writeStringToFile(new File(target.getParent() + "/css/style.css"), readInputStream(css));
 				FileUtils.writeStringToFile(new File(target.getParent() + "/js/script.js"), readInputStream(js));

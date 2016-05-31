@@ -174,8 +174,8 @@ public class DiffManager {
 	}
 
 	public void generate() throws IOException, TemplateException {
-		InputStream css = Diff.class.getResourceAsStream("/css/style.css");
-		InputStream js = Diff.class.getResourceAsStream("/js/script.js");
+		InputStream css = DiffApp.class.getResourceAsStream("/css/style.css");
+		InputStream js = DiffApp.class.getResourceAsStream("/js/script.js");
 
 		FileUtils.writeStringToFile(new File(target.getParent() + "/css/style.css"), readInputStream(css));
 		FileUtils.writeStringToFile(new File(target.getParent() + "/js/script.js"), readInputStream(js));

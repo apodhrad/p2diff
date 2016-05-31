@@ -1,0 +1,4 @@
+--- null
++++ text2.txt
+@@ -1,0 +1,1 @@
++Lorem ipsum dolor sit amet

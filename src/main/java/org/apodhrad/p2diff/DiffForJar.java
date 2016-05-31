@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.apodhrad.jdownload.manager.util.UnpackUtils;
@@ -32,10 +33,8 @@ public class DiffForJar {
 		this.revisedResource = revisedPath;
 		this.newFile = newFile;
 
-		ArrayList<File> files1 = extractJar(new File(originalResource).getAbsolutePath() + ".temp",
-				this.originalResource);
-		ArrayList<File> files2 = extractJar(new File(revisedResource).getAbsolutePath() + ".temp",
-				this.revisedResource);
+		List<File> files1 = extractJar(new File(originalResource).getAbsolutePath() + ".temp", this.originalResource);
+		List<File> files2 = extractJar(new File(revisedResource).getAbsolutePath() + ".temp", this.revisedResource);
 
 		diff = getDiffFromFiles(files1, files2);
 	}
@@ -84,7 +83,7 @@ public class DiffForJar {
 	 * @return
 	 * @throws Exception
 	 */
-	private Map<String, Object> getDiffFromFiles(ArrayList<File> files1, ArrayList<File> files2) throws Exception {
+	private Map<String, Object> getDiffFromFiles(List<File> files1, List<File> files2) throws Exception {
 		for (int i = 0; i < files1.size(); i++) {
 			for (int y = 0; y < files2.size(); y++) {
 				if (!(files1.get(i).getName().startsWith(".") || files2.get(y).getName().startsWith("."))) {

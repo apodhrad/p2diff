@@ -25,7 +25,7 @@
         <configuration>
           <archive>
             <manifest>
-              <mainClass>org.apodhrad.p2diff.Diff</mainClass>
+              <mainClass>org.apodhrad.p2diff.DiffApp</mainClass>
             </manifest>
           </archive>
         </configuration>

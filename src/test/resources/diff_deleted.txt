@@ -1,0 +1,4 @@
+--- text1.txt
++++ null
+@@ -1,1 +1,0 @@
+-Lore isum dlor st aet

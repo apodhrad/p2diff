@@ -25,8 +25,8 @@ public class DiffForFile {
 
 	private File baseDir;
 
-	private File originalFile;
-	private File revisedFile;
+	private DiffFile originalFile;
+	private DiffFile revisedFile;
 
 	private Configuration cfg;
 	public String template = "hidden.html";
@@ -39,8 +39,11 @@ public class DiffForFile {
 	 * @throws URISyntaxException
 	 */
 	public DiffForFile(File originalFile, File revisedFile) throws IOException {
-		this.originalFile = originalFile;
-		this.revisedFile = revisedFile;
+		if (originalFile == null && revisedFile == null) {
+			throw new IllegalArgumentException("Cannot generate diff for two NULL objects!");
+		}
+		this.originalFile = new DiffFile(originalFile);
+		this.revisedFile = new DiffFile(revisedFile);
 	}
 
 	public void setBaseDir(File baseDir) {
@@ -80,9 +83,10 @@ public class DiffForFile {
 		return result;
 	}
 
-	public List<String> getDiff() throws IOException {
-		List<String> originalLines = FileUtils.readLines(originalFile);
-		List<String> revisedLines = FileUtils.readLines(revisedFile);
+	public List<String> generateDiff() throws IOException {
+
+		List<String> originalLines = originalFile.getLines();
+		List<String> revisedLines = revisedFile.getLines();
 
 		Patch patch = DiffUtils.diff(originalLines, revisedLines);
 		if (patch.getDeltas().isEmpty()) {
@@ -91,11 +95,6 @@ public class DiffForFile {
 
 		String originalPath = originalFile.getPath();
 		String revisedPath = revisedFile.getPath();
-
-		if (baseDir != null) {
-			originalPath = baseDir.toURI().relativize(originalFile.toURI()).getPath();
-			revisedPath = baseDir.toURI().relativize(revisedFile.toURI()).getPath();
-		}
 
 		return DiffUtils.generateUnifiedDiff(originalPath, revisedPath, originalLines, patch, 1);
 	}
@@ -121,7 +120,7 @@ public class DiffForFile {
 	 */
 	public String generate() throws Exception {
 		List<String> htmlDiff = new ArrayList<String>();
-		for (String line : getDiff()) {
+		for (String line : generateDiff()) {
 			htmlDiff.add(this.convertToHTML(line));
 		}
 
@@ -142,6 +141,32 @@ public class DiffForFile {
 		cfg = new Configuration(Configuration.VERSION_2_3_22);
 		cfg.setDefaultEncoding("UTF-8");
 		cfg.setClassForTemplateLoading(this.getClass(), "/templates");
+	}
+
+	private class DiffFile {
+
+		private File file;
+
+		public DiffFile(File file) {
+			this.file = file;
+		}
+
+		public List<String> getLines() throws IOException {
+			if (file == null) {
+				return new ArrayList<String>();
+			}
+			return FileUtils.readLines(file);
+		}
+
+		public String getPath() {
+			if (file == null) {
+				return "null";
+			}
+			if (baseDir != null) {
+				return baseDir.toURI().relativize(file.toURI()).getPath();
+			}
+			return file.getPath();
+		}
 	}
 
 }
