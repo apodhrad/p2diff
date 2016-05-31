@@ -1,6 +1,8 @@
 package org.apodhrad.p2diff;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.StringWriter;
 import java.net.URISyntaxException;
@@ -84,6 +86,23 @@ public class DiffForFile {
 	}
 
 	public List<String> generateDiff() throws IOException {
+		List<String> diff = new ArrayList<String>();
+
+		if (originalFile.isBinaryFile() || revisedFile.isBinaryFile()) {
+			if (originalFile.file == null) {
+				diff.add("There is the new binary file " + revisedFile.file.getName());
+				return diff;
+			}
+			if (revisedFile.file == null) {
+				diff.add("The binary file " + originalFile.file.getName() + " was removed");
+				return diff;
+			}
+			if (FileUtils.checksumCRC32(originalFile.file) == FileUtils.checksumCRC32(revisedFile.file)) {
+				return diff;
+			}
+			diff.add("Binary files " + originalFile + " and " + revisedFile + " differ");
+			return diff;
+		}
 
 		List<String> originalLines = originalFile.getLines();
 		List<String> revisedLines = revisedFile.getLines();
@@ -166,6 +185,40 @@ public class DiffForFile {
 				return baseDir.toURI().relativize(file.toURI()).getPath();
 			}
 			return file.getPath();
+		}
+
+		public boolean isBinaryFile() throws FileNotFoundException, IOException {
+			if (file == null) {
+				return false;
+			}
+			FileInputStream in = new FileInputStream(file);
+			int size = in.available();
+			if (size > 1024)
+				size = 1024;
+			byte[] data = new byte[size];
+			in.read(data);
+			in.close();
+
+			int ascii = 0;
+			int other = 0;
+
+			for (int i = 0; i < data.length; i++) {
+				byte b = data[i];
+				if (b < 0x09)
+					return true;
+
+				if (b == 0x09 || b == 0x0A || b == 0x0C || b == 0x0D)
+					ascii++;
+				else if (b >= 0x20 && b <= 0x7E)
+					ascii++;
+				else
+					other++;
+			}
+
+			if (other == 0)
+				return false;
+
+			return 100 * other / (ascii + other) > 95;
 		}
 	}
 

@@ -3,9 +3,12 @@ package org.apodhrad.p2diff;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import org.apodhrad.jdownload.manager.util.UnpackUtils;
 import org.apodhrad.p2diff.util.ResourceUtils;
@@ -14,19 +17,45 @@ import freemarker.template.TemplateException;
 
 public class DiffForJar {
 
-	/**
-	 * Path to the original file
-	 */
 	private String originalResource;
-
-	/**
-	 * Path to the revised file
-	 */
 	private String revisedResource;
+
+	private DiffJar originalJar;
+	private DiffJar revisedJar;
 
 	private File newFile;
 
 	private Map<String, Object> diff = new HashMap<String, Object>();
+
+	public DiffForJar(File originalJar, File revisedJar) {
+		this.originalJar = new DiffJar(originalJar);
+		this.revisedJar = new DiffJar(revisedJar);
+	}
+
+	public List<String> generateDiff() throws IOException {
+		List<String> diff = new ArrayList<String>();
+		if (originalJar.computeCRC32() == revisedJar.computeCRC32()) {
+			return diff;
+		}
+
+		Collection<String> originalPaths = originalJar.listRelativePaths();
+		Collection<String> revisedPaths = revisedJar.listRelativePaths();
+
+		Set<Delta> deltas = new HashSet<Delta>();
+
+		for (String path : originalPaths) {
+			deltas.add(new Delta(path, originalJar.getFile(path), revisedJar.getFile(path)));
+		}
+		for (String path : revisedPaths) {
+			deltas.add(new Delta(path, originalJar.getFile(path), revisedJar.getFile(path)));
+		}
+		
+		for (Delta delta: deltas) {
+			diff.addAll(new DiffForFile(delta.getOriginalFile(), delta.getRevisedFile()).generateDiff());
+		}
+
+		return diff;
+	}
 
 	public DiffForJar(String originalPath, String revisedPath, File newFile) throws Exception {
 		this.originalResource = originalPath;
@@ -131,4 +160,5 @@ public class DiffForJar {
 		HTMLGenerator generator = new HTMLGenerator(diff, newFile.getPath());
 		return generator.generateHTML(template + ".html");
 	}
+
 }
