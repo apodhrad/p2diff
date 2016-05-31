@@ -1,5 +1,7 @@
 package org.apodhrad.p2diff;
 
+import static org.apodhrad.p2diff.DiffForJarTest.JAR_FILE_1;
+import static org.apodhrad.p2diff.DiffForJarTest.JAR_FILE_2;
 import static org.apodhrad.p2diff.util.ResourceUtils.getResourceFile;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
@@ -14,14 +16,14 @@ import org.junit.Test;
 public class DiffForFileTest {
 
 	@Test
-	public void testOfGettingDiffForSameFiles() throws Exception {
+	public void testGeneratingDiffForSameFiles() throws Exception {
 		DiffForFile dff = new DiffForFile(getResourceFile("/text1.txt"), getResourceFile("/text1.txt"));
 		List<String> diffLines = dff.generateDiff();
 		assertTrue(diffLines.isEmpty());
 	}
 
 	@Test
-	public void testOfGettingDiffForDifferentFiles() throws Exception {
+	public void testGeneratingDiffForDifferentFiles() throws Exception {
 		DiffForFile dff = new DiffForFile(getResourceFile("/text1.txt"), getResourceFile("/text2.txt"));
 		dff.setBaseDir(getResourceFile("/"));
 
@@ -30,7 +32,7 @@ public class DiffForFileTest {
 	}
 
 	@Test
-	public void testOfGettingDiffForNewFile() throws Exception {
+	public void testGeneratingDiffForNewFile() throws Exception {
 		DiffForFile dff = new DiffForFile(null, getResourceFile("/text2.txt"));
 		dff.setBaseDir(getResourceFile("/"));
 
@@ -39,7 +41,7 @@ public class DiffForFileTest {
 	}
 
 	@Test
-	public void testOfGettingDiffForDeletedFile() throws Exception {
+	public void testGeneratingDiffForDeletedFile() throws Exception {
 		DiffForFile dff = new DiffForFile(getResourceFile("/text1.txt"), null);
 		dff.setBaseDir(getResourceFile("/"));
 
@@ -48,13 +50,21 @@ public class DiffForFileTest {
 	}
 
 	@Test
-	public void testOfGettingDiffForNullObjects() throws Exception {
+	public void testGeneratingDiffForNullObjects() throws Exception {
 		try {
 			new DiffForFile(null, null);
 		} catch (IllegalArgumentException iae) {
 			return;
 		}
 		fail("Expected IllegalArgumentException when setting two NULL objects");
+	}
+
+	@Test
+	public void testGeneratingDiffForDifferentBinaryFiles() throws Exception {
+		DiffForFile dff = new DiffForFile(getResourceFile(JAR_FILE_1), getResourceFile(JAR_FILE_2));
+		List<String> diffLines = dff.generateDiff();
+		// assertTrue(diffLines.contains(""));
+		assertEquals(1, diffLines.size());
 	}
 
 	@Test

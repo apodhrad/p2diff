@@ -1,0 +1,62 @@
+--- com.example.p2bundle_0.0.1.v20161954-1250/com/example/p2bundle/App.java
++++ null
+@@ -1,9 +1,0 @@
+-package com.example.p2bundle;
+-
+-public class App {
+-
+-	public static void main(String[] args) {
+-		System.out.println("Hello World");
+-	}
+-
+-}
+--- com.example.p2bundle_0.0.1.v20161954-1250/com/example/p2bundle/Hello.java
++++ com.example.p2bundle.source_0.0.2.v20161958-1251/com/example/p2bundle/Hello.java
+@@ -2,2 +2,4 @@
+ 
++import static com.example.p2bundle.utils.HelloUtils.hello;
++
+ public class Hello {
+@@ -5,5 +7,4 @@
+ 	public String sayHello(String name) {
+-		return "Hello " + name;
++		return hello(name);
+ 	}
+-
+ }
+--- com.example.p2bundle_0.0.1.v20161954-1250/com/example/p2bundle/Hello.java
++++ null
+@@ -1,9 +1,0 @@
+-package com.example.p2bundle;
+-
+-public class Hello {
+-
+-	public String sayHello(String name) {
+-		return "Hello " + name;
+-	}
+-
+-}
+--- null
++++ com.example.p2bundle.source_0.0.2.v20161958-1251/com/example/p2bundle/utils/HelloUtils.java
+@@ -1,0 +1,9 @@
++package com.example.p2bundle.utils;
++
++public class HelloUtils {
++
++	public static String hello(String name) {
++		return "Hello " + name;
++	}
++
++}
+--- com.example.p2bundle_0.0.1.v20161954-1250/com/example/p2bundle/App.java
++++ null
+@@ -1,9 +1,0 @@
+-package com.example.p2bundle;
+-
+-public class App {
+-
+-	public static void main(String[] args) {
+-		System.out.println("Hello World");
+-	}
+-
+-}

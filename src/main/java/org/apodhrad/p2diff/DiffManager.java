@@ -163,7 +163,7 @@ public class DiffManager {
 			try {
 				File file = new File(target.getParent() + "/" + getPath(file1.getPath(), zip1) + "-diff.html");
 				FileUtils.writeStringToFile(file,
-						(new DiffForJar(file1.getPath(), file2.getPath(), file).generateHTML("inner_layout")));
+						(new DiffForJar(file1, file2).generateHTML("inner_layout")));
 			} catch (Exception e) {
 				e.printStackTrace();
 			}

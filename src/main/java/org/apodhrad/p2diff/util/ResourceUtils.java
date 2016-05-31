@@ -1,6 +1,9 @@
 package org.apodhrad.p2diff.util;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 
@@ -33,8 +36,9 @@ public class ResourceUtils {
 			}
 		}
 	}
-	
+
 	public static File getResourceFile(String path) {
 		return new File(ResourceUtils.class.getResource(path).getFile());
 	}
+
 }
