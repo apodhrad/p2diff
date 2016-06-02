@@ -53,23 +53,33 @@ tr.diff {
 	color: black !important;
 }
 
-pre * {
+code * {
 	background-color: transparent !important;
 	padding: 0;
 }
 
-pre .range {
+code span {
+	display: block;
+	padding-left: 30px;
+	white-space: pre;
+}
+
+code .range {
 	color: #800080;
 }
 
-pre .info {
+code .info {
 	color: #2980b9;
 }
 
-pre .deleted {
+code .deleted {
 	color: #e74c3c;
 }
 
-pre .added {
+code .added {
 	color: #27ae60;
+}
+
+code .nochange {
+	color: gray;
 }

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Diff View</title>
+		<meta charset="utf-8">
+		<link href="css/style.css" rel="stylesheet">
+		<script src="js/script.js"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+	</head>
+	
+	<body>
+		<code>
+			<span class="info">--- com.example.p2bundle_0.0.1.v20161954-1250/com/example/p2bundle/App.java</span>
+			<span class="info">+++ null</span>
+			<span class="range">@@ -1,9 +1,0 @@</span>
+			<span class="deleted">-package com.example.p2bundle;</span>
+			<span class="deleted">-</span>
+			<span class="deleted">-public class App {</span>
+			<span class="deleted">-</span>
+			<span class="deleted">-	public static void main(String[] args) {</span>
+			<span class="deleted">-		System.out.println("Hello World");</span>
+			<span class="deleted">-	}</span>
+			<span class="deleted">-</span>
+			<span class="deleted">-}</span>
+			<span class="info">--- com.example.p2bundle_0.0.1.v20161954-1250/com/example/p2bundle/Hello.java</span>
+			<span class="info">+++ com.example.p2bundle.source_0.0.2.v20161958-1251/com/example/p2bundle/Hello.java</span>
+			<span class="range">@@ -2,2 +2,4 @@</span>
+			<span class="nochange"> </span>
+			<span class="added">+import static com.example.p2bundle.utils.HelloUtils.hello;</span>
+			<span class="added">+</span>
+			<span class="nochange"> public class Hello {</span>
+			<span class="range">@@ -5,5 +7,4 @@</span>
+			<span class="nochange"> 	public String sayHello(String name) {</span>
+			<span class="deleted">-		return "Hello " + name;</span>
+			<span class="added">+		return hello(name);</span>
+			<span class="nochange"> 	}</span>
+			<span class="deleted">-</span>
+			<span class="nochange"> }</span>
+			<span class="info">--- com.example.p2bundle_0.0.1.v20161954-1250/com/example/p2bundle/Hello.java</span>
+			<span class="info">+++ null</span>
+			<span class="range">@@ -1,9 +1,0 @@</span>
+			<span class="deleted">-package com.example.p2bundle;</span>
+			<span class="deleted">-</span>
+			<span class="deleted">-public class Hello {</span>
+			<span class="deleted">-</span>
+			<span class="deleted">-	public String sayHello(String name) {</span>
+			<span class="deleted">-		return "Hello " + name;</span>
+			<span class="deleted">-	}</span>
+			<span class="deleted">-</span>
+			<span class="deleted">-}</span>
+			<span class="info">--- null</span>
+			<span class="info">+++ com.example.p2bundle.source_0.0.2.v20161958-1251/com/example/p2bundle/utils/HelloUtils.java</span>
+			<span class="range">@@ -1,0 +1,9 @@</span>
+			<span class="added">+package com.example.p2bundle.utils;</span>
+			<span class="added">+</span>
+			<span class="added">+public class HelloUtils {</span>
+			<span class="added">+</span>
+			<span class="added">+	public static String hello(String name) {</span>
+			<span class="added">+		return "Hello " + name;</span>
+			<span class="added">+	}</span>
+			<span class="added">+</span>
+			<span class="added">+}</span>
+			<span class="info">--- com.example.p2bundle_0.0.1.v20161954-1250/com/example/p2bundle/App.java</span>
+			<span class="info">+++ null</span>
+			<span class="range">@@ -1,9 +1,0 @@</span>
+			<span class="deleted">-package com.example.p2bundle;</span>
+			<span class="deleted">-</span>
+			<span class="deleted">-public class App {</span>
+			<span class="deleted">-</span>
+			<span class="deleted">-	public static void main(String[] args) {</span>
+			<span class="deleted">-		System.out.println("Hello World");</span>
+			<span class="deleted">-	}</span>
+			<span class="deleted">-</span>
+			<span class="deleted">-}</span>
+		</code>
+	</body>
+</html>
