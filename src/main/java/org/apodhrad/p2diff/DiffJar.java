@@ -13,9 +13,9 @@ import org.apodhrad.p2diff.util.JarUtils;
 public class DiffJar {
 
 	private File jarFile;
-	private File extractedJarFile;
+	private Folder extractedJarFile;
 	private File sourceJarFile;
-	private File extractedSourceJarFile;
+	private Folder extractedSourceJarFile;
 
 	public DiffJar(File jarFile) {
 		this.jarFile = jarFile;
@@ -27,7 +27,7 @@ public class DiffJar {
 
 	public File getExtractedJarFile() throws IOException {
 		if (extractedJarFile == null) {
-			extractedJarFile = JarUtils.extractJarFile(jarFile);
+			extractedJarFile = new Folder(JarUtils.extractJarFile(jarFile));
 		}
 		return extractedJarFile;
 	}
@@ -37,7 +37,7 @@ public class DiffJar {
 			return null;
 		}
 		if (extractedSourceJarFile == null) {
-			extractedSourceJarFile = JarUtils.extractJarFile(sourceJarFile);
+			extractedSourceJarFile = new Folder(JarUtils.extractJarFile(sourceJarFile));
 		}
 		return extractedSourceJarFile;
 	}
@@ -53,6 +53,9 @@ public class DiffJar {
 	public Collection<String> listRelativePaths() throws IOException {
 		List<String> relativePaths = new ArrayList<String>();
 		for (File file : listFiles()) {
+			if (file.getName().endsWith(".java")) {
+				continue;
+			}
 			relativePaths.add(getExtractedJarFile().toURI().relativize(file.toURI()).getPath());
 		}
 		return relativePaths;

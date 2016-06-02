@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Diff View</title>
+		<meta charset="utf-8">
+		<link href="css/style.css" rel="stylesheet">
+		<script src="js/script.js"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+	</head>
+	
+	<body>
+		<h1>Diff View</h1>
+		
+		<div class="filtering">
+			<form>
+				<p>
+					<label for="search">
+					<input type="text" id="search" name="search" placeholder="Search">
+				</p>
+				<p>
+					<label for="same-hide">Show same files</label>
+					<input type="checkbox" id="same-hide" name="same-hide" checked>
+				</p>
+				<p>
+					<label for="added-hide">Show added files</label>
+					<input type="checkbox" id="added-hide" name="added-hide" checked>
+				</p>
+				<p>
+					<label for="deleted-hide">Show deleted files</label>
+					<input type="checkbox" id="deleted-hide" name="deleted-hide" checked>
+				</p>
+				<p>
+					<label for="changed-hide">Show changed files</label>
+					<input type="checkbox" id="changed-hide" name="changed-hide" checked>
+				</p>
+				<p>
+					<label for="diff-hide">Show files with diff</label>
+					<input type="checkbox" id="diff-hide" name="diff-hide" checked>
+				</p>
+
+				<div class="clear"></div>
+			</form>
+		</div>
+		<table>
+			<tr>
+				<th>Name</th>
+				<th>Original version</th>
+				<th>Revised version</th>
+				<th>Action</th>
+			</tr>
+			<tr class="changed">
+				<td>test0.txt</td>
+				<td>1.2.2</td>
+				<td>1.2.3</td>
+				<td></td>
+			</tr>
+			<tr class="changed">
+				<td>dir1/test1.txt</td>
+				<td>1.2.2</td>
+				<td>1.2.3</td>
+				<td></td>
+			</tr>
+			<tr class="deleted">
+				<td>dir2/test2.txt</td>
+				<td>1.2.2</td>
+				<td>1.2.3</td>
+				<td></td>
+			</tr>
+			<tr class="added">
+				<td>dir3/test3.txt</td>
+				<td>1.2.2</td>
+				<td>1.2.3</td>
+				<td></td>
+			</tr>
+		</table>
+	</body>
+</html>

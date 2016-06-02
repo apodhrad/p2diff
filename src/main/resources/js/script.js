@@ -8,6 +8,9 @@ window.onload = function() {
   $("#added-hide").click(function() {
         $("tr.added").toggle();
   });
+  $("#changed-hide").click(function() {
+      $("tr.changed").toggle();
+});
   $("#renamed-hide").click(function() {
         $("tr.renamed").toggle();
   });

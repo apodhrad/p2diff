@@ -10,6 +10,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import org.apodhrad.p2diff.html.HTMLGenerator;
+
 import freemarker.template.TemplateException;
 
 public class DiffForJar {
@@ -43,14 +45,20 @@ public class DiffForJar {
 		for (String path : revisedPaths) {
 			deltas.add(new Delta(path, originalJar.getFile(path), revisedJar.getFile(path)));
 		}
-		
-		for (Delta delta: deltas) {
+
+		for (Delta delta : asSortedList(deltas)) {
 			DiffForFile dff = new DiffForFile(delta.getOriginalFile(), delta.getRevisedFile());
 			dff.setBaseDir(originalJar.getExtractedJarFile().getParentFile());
 			diff.addAll(dff.generateDiff());
 		}
 
 		return diff;
+	}
+
+	public static <T extends Comparable<? super T>> List<T> asSortedList(Collection<T> c) {
+		List<T> list = new ArrayList<T>(c);
+		java.util.Collections.sort(list);
+		return list;
 	}
 
 	/**

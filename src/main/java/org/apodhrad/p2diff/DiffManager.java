@@ -11,6 +11,7 @@ import java.util.Map;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.io.IOUtils;
+import org.apodhrad.p2diff.html.HTMLGenerator;
 import org.apodhrad.p2diff.util.ResourceUtils;
 
 import com.google.common.io.Files;
@@ -177,8 +178,8 @@ public class DiffManager {
 		InputStream css = DiffApp.class.getResourceAsStream("/css/style.css");
 		InputStream js = DiffApp.class.getResourceAsStream("/js/script.js");
 
-		FileUtils.writeStringToFile(new File(target.getParent() + "/css/style.css"), readInputStream(css));
-		FileUtils.writeStringToFile(new File(target.getParent() + "/js/script.js"), readInputStream(js));
+		FileUtils.copyInputStreamToFile(css, new File(target.getParent() + "/css/style.css"));
+		FileUtils.copyInputStreamToFile(js, new File(target.getParent() + "/css/script.js"));
 
 		FileUtils.writeStringToFile(target, generateHTML());
 	}

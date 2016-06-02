@@ -11,12 +11,15 @@ form p {
 	clear: both;
 }
 
+th {
+	color: purple;
+}
+
 tr {
 	color: white;
 }
 
 td {
-	width: 50%;
 	padding: 10px;
 }
 
@@ -43,6 +46,10 @@ tr.range {
 	background-color: #800080;
 }
 
+tr.changed {
+	background-color: brown;
+}
+
 tr.same {
 	background-color: #ecf0f1;
 	color: black !important;
@@ -53,23 +60,33 @@ tr.diff {
 	color: black !important;
 }
 
-pre * {
+code * {
 	background-color: transparent !important;
 	padding: 0;
 }
 
-pre .range {
+code span {
+	display: block;
+	padding-left: 30px;
+	white-space: pre;
+}
+
+code .range {
 	color: #800080;
 }
 
-pre .info {
+code .info {
 	color: #2980b9;
 }
 
-pre .deleted {
+code .deleted {
 	color: #e74c3c;
 }
 
-pre .added {
+code .added {
 	color: #27ae60;
+}
+
+code .nochange {
+	color: gray;
 }
