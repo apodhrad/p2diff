@@ -6,7 +6,7 @@ import java.io.IOException;
 import org.apache.commons.io.FileUtils;
 import org.apodhrad.jdownload.manager.util.UnpackUtils;
 
-public class JarUtils {
+public class P2BundleUtils {
 
 	public static File extractJarFile(File jarFile) throws IOException {
 		return extractJarFile(jarFile, true);

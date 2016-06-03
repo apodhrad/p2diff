@@ -4,12 +4,13 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashSet;
 import java.util.List;
 
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.filefilter.TrueFileFilter;
 import org.apodhrad.p2diff.file.Folder;
-import org.apodhrad.p2diff.util.JarUtils;
+import org.apodhrad.p2diff.util.P2BundleUtils;
 
 public class P2Bundle {
 
@@ -19,16 +20,18 @@ public class P2Bundle {
 	private Folder extractedSourceJarFile;
 
 	public P2Bundle(File jarFile) {
-		this.jarFile = jarFile;
-		File sourceJarFile = JarUtils.getSourceJarFile(jarFile);
-		if (sourceJarFile.exists()) {
-			this.sourceJarFile = sourceJarFile;
+		if (jarFile != null) {
+			this.jarFile = jarFile;
+			File sourceJarFile = P2BundleUtils.getSourceJarFile(jarFile);
+			if (sourceJarFile.exists()) {
+				this.sourceJarFile = sourceJarFile;
+			}
 		}
 	}
 
 	public File getExtractedJarFile() throws IOException {
-		if (extractedJarFile == null) {
-			extractedJarFile = new Folder(JarUtils.extractJarFile(jarFile));
+		if (extractedJarFile == null && jarFile != null) {
+			extractedJarFile = new Folder(P2BundleUtils.extractJarFile(jarFile));
 		}
 		return extractedJarFile;
 	}
@@ -38,16 +41,22 @@ public class P2Bundle {
 			return null;
 		}
 		if (extractedSourceJarFile == null) {
-			extractedSourceJarFile = new Folder(JarUtils.extractJarFile(sourceJarFile));
+			extractedSourceJarFile = new Folder(P2BundleUtils.extractJarFile(sourceJarFile));
 		}
 		return extractedSourceJarFile;
 	}
 
 	public long computeCRC32() throws IOException {
+		if (jarFile == null) {
+			return 0l;
+		}
 		return FileUtils.checksumCRC32(jarFile);
 	}
 
 	public Collection<File> listFiles() throws IOException {
+		if (jarFile == null) {
+			return new HashSet<File>();
+		}
 		return FileUtils.listFiles(getExtractedJarFile(), TrueFileFilter.INSTANCE, TrueFileFilter.INSTANCE);
 	}
 
@@ -63,6 +72,9 @@ public class P2Bundle {
 	}
 
 	public File getFile(String relativePath) throws IOException {
+		if (jarFile == null) {
+			return null;
+		}
 		File file = new File(getExtractedJarFile(), relativePath);
 		if (!file.exists()) {
 			return null;

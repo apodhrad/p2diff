@@ -11,7 +11,7 @@ import java.io.File;
 import java.util.Collection;
 
 import org.apache.commons.io.FileUtils;
-import org.apodhrad.p2diff.util.JarUtils;
+import org.apodhrad.p2diff.util.P2BundleUtils;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -82,10 +82,11 @@ public class P2BundleTest {
 		P2Bundle diffJar = new P2Bundle(getResourceFile(JAR_FILE_2));
 		assertNull(diffJar.getFile("META-INF/MANIFEST.M"));
 	}
+
 	@Test
 	public void testFindingInternalSourceFile() throws Exception {
 		File jarFile = getResourceFile(JAR_FILE_1);
-		File extraxtedJarFile = JarUtils.extractJarFile(jarFile);
+		File extraxtedJarFile = P2BundleUtils.extractJarFile(jarFile);
 
 		P2Bundle diffJar = new P2Bundle(jarFile);
 		File classFile = new File(extraxtedJarFile, "com/example/p2bundle/Hello.class");
@@ -96,7 +97,7 @@ public class P2BundleTest {
 	@Test
 	public void testFindingExternalSourceFile() throws Exception {
 		File jarFile = getResourceFile(JAR_FILE_2);
-		File extraxtedJarFile = JarUtils.extractJarFile(jarFile);
+		File extraxtedJarFile = P2BundleUtils.extractJarFile(jarFile);
 
 		P2Bundle diffJar = new P2Bundle(jarFile);
 		File classFile = new File(extraxtedJarFile, "com/example/p2bundle/Hello.class");
@@ -107,7 +108,7 @@ public class P2BundleTest {
 	@Test
 	public void testFindingNonExistingSourceFile() throws Exception {
 		File jarFile = getResourceFile(JAR_FILE_2);
-		File extraxtedJarFile = JarUtils.extractJarFile(jarFile);
+		File extraxtedJarFile = P2BundleUtils.extractJarFile(jarFile);
 
 		P2Bundle diffJar = new P2Bundle(jarFile);
 		File classFile = new File(extraxtedJarFile, "com/example/p2bundle/App.class");
@@ -118,7 +119,7 @@ public class P2BundleTest {
 	@Test
 	public void testFindingNonJavaSourceFile() throws Exception {
 		File jarFile = getResourceFile(JAR_FILE_1);
-		File extraxtedJarFile = JarUtils.extractJarFile(jarFile);
+		File extraxtedJarFile = P2BundleUtils.extractJarFile(jarFile);
 
 		P2Bundle diffJar = new P2Bundle(jarFile);
 		File classFile = new File(extraxtedJarFile, "com/example/p2bundle/Hello.java");

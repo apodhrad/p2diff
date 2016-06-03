@@ -71,6 +71,10 @@ public class P2DiffForFile {
 		List<String> originalLines = originalFile.getLines();
 		List<String> revisedLines = revisedFile.getLines();
 
+		if (originalLines.isEmpty() && revisedLines.isEmpty()) {
+			return diff;
+		}
+
 		Patch patch = DiffUtils.diff(originalLines, revisedLines);
 		if (patch.getDeltas().isEmpty()) {
 			return new ArrayList<String>();

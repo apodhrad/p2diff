@@ -1,0 +1,30 @@
+--- null
++++ com.example.p2bundle_0.0.2.v20161958-1251/META-INF/MANIFEST.MF
+@@ -1,0 +1,2 @@
++Manifest-Version: 1.0
++
+--- null
++++ com.example.p2bundle.source_0.0.2.v20161958-1251/com/example/p2bundle/Hello.java
+@@ -1,0 +1,10 @@
++package com.example.p2bundle;
++
++import static com.example.p2bundle.utils.HelloUtils.hello;
++
++public class Hello {
++
++	public String sayHello(String name) {
++		return hello(name);
++	}
++}
+--- null
++++ com.example.p2bundle.source_0.0.2.v20161958-1251/com/example/p2bundle/utils/HelloUtils.java
+@@ -1,0 +1,9 @@
++package com.example.p2bundle.utils;
++
++public class HelloUtils {
++
++	public static String hello(String name) {
++		return "Hello " + name;
++	}
++
++}

@@ -9,7 +9,6 @@ import java.util.List;
 
 import org.apache.commons.io.FileUtils;
 import org.apodhrad.p2diff.file.Delta;
-import org.apodhrad.p2diff.html.HTMLGenerator;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -33,7 +32,7 @@ public class HTMLGeneratorTest {
 		File target = new File("target");
 
 		List<String> diff = FileUtils.readLines(getResourceFile("/diff_jar.txt"));
-		new HTMLGenerator().generateDiffReport(diff, target);
+		new HTMLGenerator(target).generateDiffReport(diff);
 
 		String expectedHtml = FileUtils.readFileToString(getResourceFile("/report_diff.html"));
 		assertEquals(expectedHtml, FileUtils.readFileToString(new File(target, "diff-reports/index.html")));
@@ -44,15 +43,20 @@ public class HTMLGeneratorTest {
 		File target = new File("target");
 
 		List<Delta> deltas = new ArrayList<Delta>();
-		deltas.add(new Delta("test0.txt", new File("test0.txt"), new File("test0.txt")));
+		deltas.add(new Delta("test0.txt", new File("test0_1.2.2.txt"), new File("test0_1.2.3.txt")));
 		deltas.add(new Delta("dir1/test1.txt", new File("test1.txt"), new File("test1.txt")));
-		deltas.add(new Delta("dir2/test2.txt", new File("test2.txt"), null));
-		deltas.add(new Delta("dir3/test3.txt", null, new File("test3.txt")));
+		deltas.add(new Delta("dir2/test2.txt", new File("test2_1.2.2.txt"), null));
+		deltas.add(new Delta("dir3/test3.txt", null, new File("test3_1.2.3.txt")));
 
-		new HTMLGenerator().generateDiffReport2(deltas, target);
+		new HTMLGenerator(target).generateDeltaReport(deltas);
 
 		String expectedHtml = FileUtils.readFileToString(getResourceFile("/report_delta.html"));
 		assertEquals(expectedHtml, FileUtils.readFileToString(new File(target, "diff-reports/index.html")));
+	}
+
+	@Test
+	public void testGeneratingComplexReport() throws Exception {
+
 	}
 
 }

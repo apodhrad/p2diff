@@ -4,62 +4,41 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.StringWriter;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import org.apache.commons.io.FileUtils;
-import org.apodhrad.p2diff.P2DiffApp;
 import org.apodhrad.p2diff.file.Delta;
 
 import freemarker.template.Configuration;
-import freemarker.template.Template;
 import freemarker.template.TemplateException;
 
 public class HTMLGenerator {
 
-	/**
-	 * Wrapping tag name
-	 */
-	public static final String TAG = "span";
+	public static final String TAG_SPAN = "span";
 
-	private Map<String, Object> diff = new HashMap<String, Object>();
 	private Configuration cfg;
-	private String filename;
+	private File diffFolder;
+	private File target;
 
-	public HTMLGenerator() {
-	}
+	public HTMLGenerator(File target) {
+		this.target = target;
 
-	public HTMLGenerator(Map<String, Object> diff) {
-		this(diff, "");
-	}
-
-	public HTMLGenerator(Map<String, Object> diff, String filename) {
-		this.filename = filename;
-		this.diff = diff;
-	}
-
-	public String generateHTML(String template) throws IOException, TemplateException {
-		configurateTemplateSystem();
-		Template temp = cfg.getTemplate(template);
-
-		Map<String, Object> root = new HashMap<String, Object>();
-
-		root.put("filename", filename);
-		root.put("diff", diff);
-
-		StringWriter sw = new StringWriter();
-		temp.process(root, sw);
-
-		return sw.toString();
-	}
-
-	private void configurateTemplateSystem() throws IOException {
 		cfg = new Configuration(Configuration.VERSION_2_3_22);
 		cfg.setDefaultEncoding("UTF-8");
 		cfg.setClassForTemplateLoading(this.getClass(), "/templates");
+	}
+
+	public File prepareDiffFolder(File target) throws IOException {
+		if (diffFolder == null) {
+			diffFolder = new File(target, "diff-reports");
+			FileUtils.forceMkdir(diffFolder);
+			FileUtils.forceMkdir(new File(diffFolder, "diffs"));
+		}
+		return diffFolder;
 	}
 
 	/**
@@ -71,59 +50,58 @@ public class HTMLGenerator {
 	 *            Tag content
 	 * @return
 	 */
-	public static String generateTag(String className, String content) {
-		return "<" + TAG + " class=\"" + className + "\">" + content + "</" + TAG + ">";
+	private static String span(String className, String content) {
+		return "<" + TAG_SPAN + " class=\"" + className + "\">" + content + "</" + TAG_SPAN + ">";
 	}
 
-	/**
-	 * Generate HTML file
-	 * 
-	 * @return
-	 * @throws Exception
-	 */
-	public void generateDiffReport(List<String> diff, File target) throws Exception {
-		File diffDir = new File(target, "diff-reports");
-		FileUtils.forceMkdir(diffDir);
+	private File getDiffFile(String name) {
+		String diffName = name.replaceAll("/", ".");
+		if (!diffName.endsWith(".html")) {
+			diffName += ".html";
+		}
+		return new File(diffFolder, "diffs/" + diffName);
+	}
 
-		InputStream css = P2DiffApp.class.getResourceAsStream("/css/style.css");
-		InputStream js = P2DiffApp.class.getResourceAsStream("/js/script.js");
+	public File generateDiff(List<String> diff, String diffName) throws Exception {
+		prepareDiffFolder(target);
 
-		FileUtils.copyInputStreamToFile(css, new File(diffDir, "css/style.css"));
-		FileUtils.copyInputStreamToFile(js, new File(diffDir, "js/script.js"));
-
-		List<String> htmlDiff = convertToHTML(diff);
-
-		configurateTemplateSystem();
-
-		Template temp = cfg.getTemplate("report_diff.html");
+		File diffFile = getDiffFile(diffName);
 
 		Map<String, Object> root = new HashMap<String, Object>();
-		root.put("diff", htmlDiff);
+		root.put("diff", convertToHTML(diff));
 
-		FileWriter sw = new FileWriter(new File(diffDir, "index.html"));
-		temp.process(root, sw);
+		FileWriter out = new FileWriter(diffFile);
+		cfg.getTemplate("simple_diff.html").process(root, out);
+
+		return diffFile;
 	}
 
-	public void generateDiffReport2(List<Delta> deltas, File target) throws Exception {
-		File diffDir = new File(target, "diff-reports");
-		FileUtils.forceMkdir(diffDir);
+	public void generateDiffReport(List<String> diff) throws Exception {
+		Map<String, Object> root = new HashMap<String, Object>();
+		root.put("diff", convertToHTML(diff));
 
-		InputStream css = P2DiffApp.class.getResourceAsStream("/css/style.css");
-		InputStream js = P2DiffApp.class.getResourceAsStream("/js/script.js");
+		generateReport("report_diff.html", root);
+	}
 
-		FileUtils.copyInputStreamToFile(css, new File(diffDir, "css/style.css"));
-		FileUtils.copyInputStreamToFile(js, new File(diffDir, "js/script.js"));
-
-
-		configurateTemplateSystem();
-
-		Template temp = cfg.getTemplate("report_delta.html");
-
+	public void generateDeltaReport(Collection<Delta> deltas) throws Exception {
 		Map<String, Object> root = new HashMap<String, Object>();
 		root.put("deltas", deltas);
 
-		FileWriter sw = new FileWriter(new File(diffDir, "index.html"));
-		temp.process(root, sw);
+		generateReport("report_delta.html", root);
+	}
+
+	protected void generateReport(String template, Map<String, Object> properties)
+			throws IOException, TemplateException {
+		prepareDiffFolder(target);
+
+		InputStream css = getClass().getResourceAsStream("/css/style.css");
+		InputStream js = getClass().getResourceAsStream("/js/script.js");
+
+		FileUtils.copyInputStreamToFile(css, new File(diffFolder, "css/style.css"));
+		FileUtils.copyInputStreamToFile(js, new File(diffFolder, "js/script.js"));
+
+		FileWriter out = new FileWriter(new File(diffFolder, "index.html"));
+		cfg.getTemplate(template).process(properties, out);
 	}
 
 	/**
@@ -152,15 +130,15 @@ public class HTMLGenerator {
 		String result;
 
 		if (diffLine.startsWith("+++") || diffLine.startsWith("---"))
-			result = generateTag("info", diffLine);
+			result = span("info", diffLine);
 		else if (diffLine.startsWith("@@") && diffLine.endsWith("@@"))
-			result = generateTag("range", diffLine);
+			result = span("range", diffLine);
 		else if (diffLine.startsWith("+"))
-			result = generateTag("added", diffLine);
+			result = span("added", diffLine);
 		else if (diffLine.startsWith("-"))
-			result = generateTag("deleted", diffLine);
+			result = span("deleted", diffLine);
 		else if (diffLine.startsWith(" "))
-			result = generateTag("nochange", diffLine);
+			result = span("nochange", diffLine);
 		else
 			result = diffLine;
 

@@ -10,18 +10,50 @@ import java.util.Set;
 
 import org.apodhrad.p2diff.file.Delta;
 
+import difflib.StringUtills;
+
 public class P2DiffForJar {
 
+	private File baseDir;
 	private P2Bundle originalBundle;
 	private P2Bundle revisedBundle;
 
 	public P2DiffForJar(File originalJar, File revisedJar) {
+		if (originalJar == null && revisedJar == null) {
+			throw new IllegalArgumentException();
+		}
 		this.originalBundle = new P2Bundle(originalJar);
 		this.revisedBundle = new P2Bundle(revisedJar);
+
+		if (originalJar != null) {
+			setBaseDir(originalJar.getParentFile());
+		} else if (revisedJar != null) {
+			setBaseDir(revisedJar.getParentFile());
+		}
 	}
 
-	public List<String> generateDiff() throws IOException {
+	public void setBaseDir(File baseDir) {
+		if (!baseDir.exists()) {
+			throw new IllegalArgumentException();
+		}
+		if (!baseDir.isDirectory()) {
+			throw new IllegalArgumentException();
+		}
+		this.baseDir = baseDir;
+	}
+
+	public File getBaseDir() {
+		return baseDir;
+	}
+
+	public String generateDiff() throws IOException {
+		List<String> diffLines = generateDiffLines();
+		return StringUtills.join(diffLines, "\n");
+	}
+
+	public List<String> generateDiffLines() throws IOException {
 		List<String> diff = new ArrayList<String>();
+
 		if (originalBundle.computeCRC32() == revisedBundle.computeCRC32()) {
 			return diff;
 		}
@@ -40,7 +72,7 @@ public class P2DiffForJar {
 
 		for (Delta delta : asSortedList(deltas)) {
 			P2DiffForFile dff = new P2DiffForFile(delta.getOriginalFile(), delta.getRevisedFile());
-			dff.setBaseDir(originalBundle.getExtractedJarFile().getParentFile());
+			dff.setBaseDir(getBaseDir());
 			diff.addAll(dff.generateDiff());
 		}
 

@@ -2,13 +2,22 @@ package org.apodhrad.p2diff.file;
 
 import java.io.File;
 
+import org.apodhrad.p2diff.util.P2BundleUtils;
+
 public class Delta implements Comparable<Delta> {
 
+	private static final String UNKNOWN_VERSION = "-";
+
 	private String path;
+	private String diff;
+	
 	private File originalFile;
 	private File revisedFile;
 
 	public Delta(String path, File originalFile, File revisedFile) {
+		if (path == null) {
+			throw new IllegalArgumentException();
+		}
 		if (originalFile == null && revisedFile == null) {
 			throw new IllegalArgumentException();
 		}
@@ -36,22 +45,36 @@ public class Delta implements Comparable<Delta> {
 			status = "added";
 		} else if (revisedFile == null) {
 			status = "deleted";
-		} else if (originalFile.getName().equals(revisedFile.getName())) {
+		} else if (!getOriginalVersion().equals(getRevisedVersion())) {
 			status = "changed";
 		}
 		return status;
 	}
 
 	public String getOriginalVersion() {
-		return "1.2.2";
+		return getVersion(originalFile);
 	}
 
 	public String getRevisedVersion() {
-		return "1.2.3";
+		return getVersion(revisedFile);
+	}
+
+	protected String getVersion(File file) {
+		if (file != null) {
+			String version = P2BundleUtils.getBundleVersion(file);
+			if (version != null) {
+				return version;
+			}
+		}
+		return UNKNOWN_VERSION;
+	}
+	
+	public String setDiff(String diff) {
+		return this.diff = diff;
 	}
 
 	public String getDiff() {
-		return "cool diff";
+		return diff;
 	}
 
 	@Override
@@ -68,8 +91,8 @@ public class Delta implements Comparable<Delta> {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
+		result = prime * result + path.hashCode();
 		result = prime * result + ((originalFile == null) ? 0 : originalFile.hashCode());
-		result = prime * result + ((path == null) ? 0 : path.hashCode());
 		result = prime * result + ((revisedFile == null) ? 0 : revisedFile.hashCode());
 		return result;
 	}

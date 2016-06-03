@@ -20,15 +20,33 @@ public class P2DiffForJarTest {
 		File jarFile1 = getResourceFile(JAR_FILE_1);
 		File jarFile2 = getResourceFile(JAR_FILE_2);
 
-		List<String> expectedLines = FileUtils.readLines(getResourceFile("/diff_jar.txt"));
-		assertEquals(expectedLines, new P2DiffForJar(jarFile1, jarFile2).generateDiff());
+		String expectedDiff = FileUtils.readFileToString(getResourceFile("/diff_jar.txt"));
+		assertEquals(expectedDiff, new P2DiffForJar(jarFile1, jarFile2).generateDiff());
 	}
-	
+
 	@Test
 	public void testGeneratingDiffForSameJars() throws Exception {
 		File jarFile1 = getResourceFile(JAR_FILE_1);
 		File jarFile2 = getResourceFile(JAR_FILE_1);
 
-		assertTrue(new P2DiffForJar(jarFile1, jarFile2).generateDiff().isEmpty());
+		assertTrue(new P2DiffForJar(jarFile1, jarFile2).generateDiffLines().isEmpty());
+	}
+
+	@Test
+	public void testGeneratingDiffForDeletedJar() throws Exception {
+		File jarFile1 = getResourceFile(JAR_FILE_1);
+		File jarFile2 = null;
+
+		String expectedDiff = FileUtils.readFileToString(getResourceFile("/diff_jar_deleted.txt"));
+		assertEquals(expectedDiff, new P2DiffForJar(jarFile1, jarFile2).generateDiff());
+	}
+
+	@Test
+	public void testGeneratingDiffForAddedJar() throws Exception {
+		File jarFile1 = null;
+		File jarFile2 = getResourceFile(JAR_FILE_2);
+
+		String expectedDiff = FileUtils.readFileToString(getResourceFile("/diff_jar_added.txt"));
+		assertEquals(expectedDiff, new P2DiffForJar(jarFile1, jarFile2).generateDiff());
 	}
 }
