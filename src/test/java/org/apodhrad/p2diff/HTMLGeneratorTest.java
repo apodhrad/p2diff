@@ -34,7 +34,7 @@ public class HTMLGeneratorTest {
 		List<String> diff = FileUtils.readLines(getResourceFile("/diff_jar.txt"));
 		new HTMLGenerator().generateDiffReport(diff, target);
 
-		String expectedHtml = FileUtils.readFileToString(getResourceFile("/diff_report.html"));
+		String expectedHtml = FileUtils.readFileToString(getResourceFile("/report_diff.html"));
 		assertEquals(expectedHtml, FileUtils.readFileToString(new File(target, "diff-reports/index.html")));
 	}
 
@@ -50,7 +50,7 @@ public class HTMLGeneratorTest {
 
 		new HTMLGenerator().generateDiffReport2(deltas, target);
 
-		String expectedHtml = FileUtils.readFileToString(getResourceFile("/delta_report.html"));
+		String expectedHtml = FileUtils.readFileToString(getResourceFile("/report_delta.html"));
 		assertEquals(expectedHtml, FileUtils.readFileToString(new File(target, "diff-reports/index.html")));
 	}
 

@@ -95,7 +95,7 @@ public class HTMLGenerator {
 
 		configurateTemplateSystem();
 
-		Template temp = cfg.getTemplate("diff_report.html");
+		Template temp = cfg.getTemplate("report_diff.html");
 
 		Map<String, Object> root = new HashMap<String, Object>();
 		root.put("diff", htmlDiff);
@@ -117,7 +117,7 @@ public class HTMLGenerator {
 
 		configurateTemplateSystem();
 
-		Template temp = cfg.getTemplate("delta_report.html");
+		Template temp = cfg.getTemplate("report_delta.html");
 
 		Map<String, Object> root = new HashMap<String, Object>();
 		root.put("deltas", deltas);
