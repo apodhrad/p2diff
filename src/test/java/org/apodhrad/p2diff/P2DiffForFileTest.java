@@ -1,7 +1,7 @@
 package org.apodhrad.p2diff;
 
-import static org.apodhrad.p2diff.DiffForJarTest.JAR_FILE_1;
-import static org.apodhrad.p2diff.DiffForJarTest.JAR_FILE_2;
+import static org.apodhrad.p2diff.P2DiffForJarTest.JAR_FILE_1;
+import static org.apodhrad.p2diff.P2DiffForJarTest.JAR_FILE_2;
 import static org.apodhrad.p2diff.util.ResourceUtils.getResourceFile;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
@@ -13,18 +13,18 @@ import java.util.List;
 import org.apache.commons.io.FileUtils;
 import org.junit.Test;
 
-public class DiffForFileTest {
+public class P2DiffForFileTest {
 
 	@Test
 	public void testGeneratingDiffForSameFiles() throws Exception {
-		DiffForFile dff = new DiffForFile(getResourceFile("/text1.txt"), getResourceFile("/text1.txt"));
+		P2DiffForFile dff = new P2DiffForFile(getResourceFile("/text1.txt"), getResourceFile("/text1.txt"));
 		List<String> diffLines = dff.generateDiff();
 		assertTrue(diffLines.isEmpty());
 	}
 
 	@Test
 	public void testGeneratingDiffForDifferentFiles() throws Exception {
-		DiffForFile dff = new DiffForFile(getResourceFile("/text1.txt"), getResourceFile("/text2.txt"));
+		P2DiffForFile dff = new P2DiffForFile(getResourceFile("/text1.txt"), getResourceFile("/text2.txt"));
 		dff.setBaseDir(getResourceFile("/"));
 
 		List<String> expectedLines = FileUtils.readLines(getResourceFile("/diff.txt"));
@@ -33,7 +33,7 @@ public class DiffForFileTest {
 
 	@Test
 	public void testGeneratingDiffForNewFile() throws Exception {
-		DiffForFile dff = new DiffForFile(null, getResourceFile("/text2.txt"));
+		P2DiffForFile dff = new P2DiffForFile(null, getResourceFile("/text2.txt"));
 		dff.setBaseDir(getResourceFile("/"));
 
 		List<String> expectedLines = FileUtils.readLines(getResourceFile("/diff_new.txt"));
@@ -42,7 +42,7 @@ public class DiffForFileTest {
 
 	@Test
 	public void testGeneratingDiffForDeletedFile() throws Exception {
-		DiffForFile dff = new DiffForFile(getResourceFile("/text1.txt"), null);
+		P2DiffForFile dff = new P2DiffForFile(getResourceFile("/text1.txt"), null);
 		dff.setBaseDir(getResourceFile("/"));
 
 		List<String> expectedLines = FileUtils.readLines(getResourceFile("/diff_deleted.txt"));
@@ -52,7 +52,7 @@ public class DiffForFileTest {
 	@Test
 	public void testGeneratingDiffForNullObjects() throws Exception {
 		try {
-			new DiffForFile(null, null);
+			new P2DiffForFile(null, null);
 		} catch (IllegalArgumentException iae) {
 			return;
 		}
@@ -61,7 +61,7 @@ public class DiffForFileTest {
 
 	@Test
 	public void testGeneratingDiffForDifferentBinaryFiles() throws Exception {
-		DiffForFile dff = new DiffForFile(getResourceFile(JAR_FILE_1), getResourceFile(JAR_FILE_2));
+		P2DiffForFile dff = new P2DiffForFile(getResourceFile(JAR_FILE_1), getResourceFile(JAR_FILE_2));
 		List<String> diffLines = dff.generateDiff();
 		// assertTrue(diffLines.contains(""));
 		assertEquals(1, diffLines.size());
@@ -69,7 +69,7 @@ public class DiffForFileTest {
 
 	@Test
 	public void testOfSettingBaseDir() throws Exception {
-		DiffForFile dff = new DiffForFile(getResourceFile("/text1.txt"), getResourceFile("/text2.txt"));
+		P2DiffForFile dff = new P2DiffForFile(getResourceFile("/text1.txt"), getResourceFile("/text2.txt"));
 		dff.setBaseDir(getResourceFile("/"));
 
 		assertEquals(getResourceFile("/").getPath(), dff.getBaseDir().getPath());
@@ -77,7 +77,7 @@ public class DiffForFileTest {
 
 	@Test
 	public void testOfSettingWrongBaseDir() throws Exception {
-		DiffForFile dff = new DiffForFile(getResourceFile("/text1.txt"), getResourceFile("/text2.txt"));
+		P2DiffForFile dff = new P2DiffForFile(getResourceFile("/text1.txt"), getResourceFile("/text2.txt"));
 		Exception exception = null;
 		try {
 			dff.setBaseDir(new File("foo"));

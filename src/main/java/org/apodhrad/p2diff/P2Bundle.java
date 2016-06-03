@@ -8,16 +8,17 @@ import java.util.List;
 
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.filefilter.TrueFileFilter;
+import org.apodhrad.p2diff.file.Folder;
 import org.apodhrad.p2diff.util.JarUtils;
 
-public class DiffJar {
+public class P2Bundle {
 
 	private File jarFile;
 	private Folder extractedJarFile;
 	private File sourceJarFile;
 	private Folder extractedSourceJarFile;
 
-	public DiffJar(File jarFile) {
+	public P2Bundle(File jarFile) {
 		this.jarFile = jarFile;
 		File sourceJarFile = JarUtils.getSourceJarFile(jarFile);
 		if (sourceJarFile.exists()) {

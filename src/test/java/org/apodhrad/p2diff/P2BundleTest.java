@@ -15,7 +15,7 @@ import org.apodhrad.p2diff.util.JarUtils;
 import org.junit.Before;
 import org.junit.Test;
 
-public class DiffJarTest {
+public class P2BundleTest {
 
 	private static final String JAR_FILE_1 = "/com.example.p2bundle_0.0.1.v20161954-1250.jar";
 	private static final String JAR_FILE_2 = "/com.example.p2bundle_0.0.2.v20161958-1251.jar";
@@ -34,7 +34,7 @@ public class DiffJarTest {
 
 	@Test
 	public void testListingFilesOfOriginalJarFile() throws Exception {
-		DiffJar diffJar = new DiffJar(getResourceFile(JAR_FILE_1));
+		P2Bundle diffJar = new P2Bundle(getResourceFile(JAR_FILE_1));
 		Collection<File> files = diffJar.listFiles();
 		File dir = getResourceFile(JAR_DIR_1);
 		assertTrue(files.contains(new File(dir, "META-INF/MANIFEST.MF")));
@@ -47,7 +47,7 @@ public class DiffJarTest {
 
 	@Test
 	public void testListingFilesOfRevisedJarFile() throws Exception {
-		DiffJar diffJar = new DiffJar(getResourceFile(JAR_FILE_2));
+		P2Bundle diffJar = new P2Bundle(getResourceFile(JAR_FILE_2));
 		Collection<File> files = diffJar.listFiles();
 		File dir = getResourceFile(JAR_DIR_2);
 		assertTrue(files.contains(new File(dir, "META-INF/MANIFEST.MF")));
@@ -58,7 +58,7 @@ public class DiffJarTest {
 
 	@Test
 	public void testListingRelativePaths() throws Exception {
-		DiffJar diffJar = new DiffJar(getResourceFile(JAR_FILE_2));
+		P2Bundle diffJar = new P2Bundle(getResourceFile(JAR_FILE_2));
 		Collection<String> relativePaths = diffJar.listRelativePaths();
 		assertTrue(relativePaths.contains("META-INF/MANIFEST.MF"));
 		assertTrue(relativePaths.contains("com/example/p2bundle/Hello.class"));
@@ -68,7 +68,7 @@ public class DiffJarTest {
 
 	@Test
 	public void testGettingFileWithCorrectPath() throws Exception {
-		DiffJar diffJar = new DiffJar(getResourceFile(JAR_FILE_2));
+		P2Bundle diffJar = new P2Bundle(getResourceFile(JAR_FILE_2));
 		assertNotNull(diffJar.getFile("META-INF/MANIFEST.MF"));
 		assertTrue(diffJar.getFile("META-INF/MANIFEST.MF").exists());
 		assertNotNull(diffJar.getFile("com/example/p2bundle/Hello.class"));
@@ -79,7 +79,7 @@ public class DiffJarTest {
 
 	@Test
 	public void testGettingFileWithIncorrectPath() throws Exception {
-		DiffJar diffJar = new DiffJar(getResourceFile(JAR_FILE_2));
+		P2Bundle diffJar = new P2Bundle(getResourceFile(JAR_FILE_2));
 		assertNull(diffJar.getFile("META-INF/MANIFEST.M"));
 	}
 	@Test
@@ -87,7 +87,7 @@ public class DiffJarTest {
 		File jarFile = getResourceFile(JAR_FILE_1);
 		File extraxtedJarFile = JarUtils.extractJarFile(jarFile);
 
-		DiffJar diffJar = new DiffJar(jarFile);
+		P2Bundle diffJar = new P2Bundle(jarFile);
 		File classFile = new File(extraxtedJarFile, "com/example/p2bundle/Hello.class");
 		File sourceFile = diffJar.getSourceFile(classFile);
 		assertNotNull(sourceFile);
@@ -98,7 +98,7 @@ public class DiffJarTest {
 		File jarFile = getResourceFile(JAR_FILE_2);
 		File extraxtedJarFile = JarUtils.extractJarFile(jarFile);
 
-		DiffJar diffJar = new DiffJar(jarFile);
+		P2Bundle diffJar = new P2Bundle(jarFile);
 		File classFile = new File(extraxtedJarFile, "com/example/p2bundle/Hello.class");
 		File sourceFile = diffJar.getSourceFile(classFile);
 		assertNotNull(sourceFile);
@@ -109,7 +109,7 @@ public class DiffJarTest {
 		File jarFile = getResourceFile(JAR_FILE_2);
 		File extraxtedJarFile = JarUtils.extractJarFile(jarFile);
 
-		DiffJar diffJar = new DiffJar(jarFile);
+		P2Bundle diffJar = new P2Bundle(jarFile);
 		File classFile = new File(extraxtedJarFile, "com/example/p2bundle/App.class");
 		File sourceFile = diffJar.getSourceFile(classFile);
 		assertNull(sourceFile);
@@ -120,7 +120,7 @@ public class DiffJarTest {
 		File jarFile = getResourceFile(JAR_FILE_1);
 		File extraxtedJarFile = JarUtils.extractJarFile(jarFile);
 
-		DiffJar diffJar = new DiffJar(jarFile);
+		P2Bundle diffJar = new P2Bundle(jarFile);
 		File classFile = new File(extraxtedJarFile, "com/example/p2bundle/Hello.java");
 		try {
 			diffJar.getSourceFile(classFile);
@@ -132,7 +132,7 @@ public class DiffJarTest {
 
 	@Test
 	public void testComputingCRC32() throws Exception {
-		DiffJar diffJar = new DiffJar(getResourceFile(JAR_FILE_1));
+		P2Bundle diffJar = new P2Bundle(getResourceFile(JAR_FILE_1));
 		assertEquals(927245408l, diffJar.computeCRC32());
 	}
 }

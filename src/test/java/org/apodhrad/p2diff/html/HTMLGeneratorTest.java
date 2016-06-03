@@ -1,4 +1,4 @@
-package org.apodhrad.p2diff;
+package org.apodhrad.p2diff.html;
 
 import static org.apodhrad.p2diff.util.ResourceUtils.getResourceFile;
 import static org.junit.Assert.assertEquals;
@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.commons.io.FileUtils;
+import org.apodhrad.p2diff.file.Delta;
 import org.apodhrad.p2diff.html.HTMLGenerator;
 import org.junit.Before;
 import org.junit.Test;

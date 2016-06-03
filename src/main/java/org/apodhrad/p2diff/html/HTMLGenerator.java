@@ -11,8 +11,8 @@ import java.util.List;
 import java.util.Map;
 
 import org.apache.commons.io.FileUtils;
-import org.apodhrad.p2diff.Delta;
-import org.apodhrad.p2diff.DiffApp;
+import org.apodhrad.p2diff.P2DiffApp;
+import org.apodhrad.p2diff.file.Delta;
 
 import freemarker.template.Configuration;
 import freemarker.template.Template;
@@ -85,8 +85,8 @@ public class HTMLGenerator {
 		File diffDir = new File(target, "diff-reports");
 		FileUtils.forceMkdir(diffDir);
 
-		InputStream css = DiffApp.class.getResourceAsStream("/css/style.css");
-		InputStream js = DiffApp.class.getResourceAsStream("/js/script.js");
+		InputStream css = P2DiffApp.class.getResourceAsStream("/css/style.css");
+		InputStream js = P2DiffApp.class.getResourceAsStream("/js/script.js");
 
 		FileUtils.copyInputStreamToFile(css, new File(diffDir, "css/style.css"));
 		FileUtils.copyInputStreamToFile(js, new File(diffDir, "js/script.js"));
@@ -108,8 +108,8 @@ public class HTMLGenerator {
 		File diffDir = new File(target, "diff-reports");
 		FileUtils.forceMkdir(diffDir);
 
-		InputStream css = DiffApp.class.getResourceAsStream("/css/style.css");
-		InputStream js = DiffApp.class.getResourceAsStream("/js/script.js");
+		InputStream css = P2DiffApp.class.getResourceAsStream("/css/style.css");
+		InputStream js = P2DiffApp.class.getResourceAsStream("/js/script.js");
 
 		FileUtils.copyInputStreamToFile(css, new File(diffDir, "css/style.css"));
 		FileUtils.copyInputStreamToFile(js, new File(diffDir, "js/script.js"));

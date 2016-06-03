@@ -1,4 +1,4 @@
-package org.apodhrad.p2diff;
+package org.apodhrad.p2diff.file;
 
 import java.io.File;
 
