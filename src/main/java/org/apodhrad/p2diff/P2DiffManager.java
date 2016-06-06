@@ -32,7 +32,8 @@ public class P2DiffManager {
 					diffLines = new P2DiffForFile(delta.getOriginalFile(), delta.getRevisedFile()).generateDiff();
 				}
 				if (!diffLines.isEmpty()) {
-					htmlGenerator.generateDiff(diffLines, delta.getPath());
+					File diffFile = htmlGenerator.generateDiff(diffLines, delta.getPath());
+					delta.setDiff("<a href=\"diffs/" + diffFile.getName() + "\">diff</a>");
 				}
 			}
 			htmlGenerator.generateDeltaReport(P2DiffForJar.asSortedList(deltas));

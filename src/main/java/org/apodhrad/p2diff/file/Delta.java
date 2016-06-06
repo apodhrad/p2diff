@@ -10,7 +10,7 @@ public class Delta implements Comparable<Delta> {
 
 	private String path;
 	private String diff;
-	
+
 	private File originalFile;
 	private File revisedFile;
 
@@ -68,13 +68,13 @@ public class Delta implements Comparable<Delta> {
 		}
 		return UNKNOWN_VERSION;
 	}
-	
-	public String setDiff(String diff) {
-		return this.diff = diff;
+
+	public void setDiff(String diff) {
+		this.diff = diff;
 	}
 
 	public String getDiff() {
-		return diff;
+		return diff == null ? "" : diff;
 	}
 
 	@Override
