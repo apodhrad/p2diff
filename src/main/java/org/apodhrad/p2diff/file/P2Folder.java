@@ -50,13 +50,21 @@ public class P2Folder extends Folder {
 		Set<Delta> deltas = new HashSet<Delta>();
 
 		for (String path : originalPaths) {
-			deltas.add(new Delta(P2BundleUtils.getBundleName(path), this.getFile(path), folder.getFile(path)));
+			deltas.add(new Delta(getShorBundleName(path), this.getFile(path), folder.getFile(path)));
 		}
 		for (String path : revisedPaths) {
-			deltas.add(new Delta(P2BundleUtils.getBundleName(path), this.getFile(path), folder.getFile(path)));
+			deltas.add(new Delta(getShorBundleName(path), this.getFile(path), folder.getFile(path)));
 		}
 
 		return deltas;
+	}
+
+	private static String getShorBundleName(String name) {
+		String shortName = P2BundleUtils.getBundleName(name);
+		if (name.endsWith(".jar")) {
+			shortName += ".jar";
+		}
+		return shortName;
 	}
 
 	private static class NonSourceBundle implements IOFileFilter {
