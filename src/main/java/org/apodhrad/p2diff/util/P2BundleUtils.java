@@ -36,6 +36,9 @@ public class P2BundleUtils {
 	}
 
 	public static String getBundleName(String jarFileName) {
+		if (!jarFileName.endsWith(".jar")) {
+			return jarFileName;
+		}
 		String name = jarFileName.substring(0, jarFileName.length() - 4);
 		if (name.contains("_")) {
 			return name.split("_")[0];
