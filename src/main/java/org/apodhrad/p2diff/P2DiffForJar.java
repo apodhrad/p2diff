@@ -24,12 +24,6 @@ public class P2DiffForJar {
 		}
 		this.originalBundle = new P2Bundle(originalJar);
 		this.revisedBundle = new P2Bundle(revisedJar);
-
-		if (originalJar != null) {
-			setBaseDir(originalJar.getParentFile());
-		} else if (revisedJar != null) {
-			setBaseDir(revisedJar.getParentFile());
-		}
 	}
 
 	public void setBaseDir(File baseDir) {
@@ -56,6 +50,12 @@ public class P2DiffForJar {
 
 		if (originalBundle.computeCRC32() == revisedBundle.computeCRC32()) {
 			return diff;
+		}
+
+		if (originalBundle.getExtractedJarFile() != null) {
+			setBaseDir(originalBundle.getExtractedJarFile().getParentFile());
+		} else if (revisedBundle.getExtractedJarFile() != null) {
+			setBaseDir(revisedBundle.getExtractedJarFile().getParentFile());
 		}
 
 		Collection<String> originalPaths = originalBundle.listRelativePaths();

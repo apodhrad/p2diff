@@ -53,8 +53,12 @@ public class Folder extends File {
 	}
 
 	public Collection<Delta> computeDeltas(Folder folder) {
-		Collection<String> originalPaths = this.listRelativePaths();
-		Collection<String> revisedPaths = folder.listRelativePaths();
+		return computeDeltas(folder, TrueFileFilter.INSTANCE);
+	}
+	
+	public Collection<Delta> computeDeltas(Folder folder, IOFileFilter filter) {
+		Collection<String> originalPaths = this.listRelativePaths(filter);
+		Collection<String> revisedPaths = folder.listRelativePaths(filter);
 
 		Set<Delta> deltas = new HashSet<Delta>();
 

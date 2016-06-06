@@ -36,7 +36,7 @@ public class P2BundleTest {
 	public void testListingFilesOfOriginalJarFile() throws Exception {
 		P2Bundle diffJar = new P2Bundle(getResourceFile(JAR_FILE_1));
 		Collection<File> files = diffJar.listFiles();
-		File dir = getResourceFile(JAR_DIR_1);
+		File dir = diffJar.getExtractedJarFile();
 		assertTrue(files.contains(new File(dir, "META-INF/MANIFEST.MF")));
 		assertTrue(files.contains(new File(dir, "com/example/p2bundle/App.class")));
 		assertTrue(files.contains(new File(dir, "com/example/p2bundle/App.java")));
@@ -49,7 +49,7 @@ public class P2BundleTest {
 	public void testListingFilesOfRevisedJarFile() throws Exception {
 		P2Bundle diffJar = new P2Bundle(getResourceFile(JAR_FILE_2));
 		Collection<File> files = diffJar.listFiles();
-		File dir = getResourceFile(JAR_DIR_2);
+		File dir = diffJar.getExtractedJarFile();
 		assertTrue(files.contains(new File(dir, "META-INF/MANIFEST.MF")));
 		assertTrue(files.contains(new File(dir, "com/example/p2bundle/Hello.class")));
 		assertTrue(files.contains(new File(dir, "com/example/p2bundle/utils/HelloUtils.class")));

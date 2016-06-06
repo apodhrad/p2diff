@@ -35,6 +35,7 @@ public class HTMLGenerator {
 	public File prepareDiffFolder(File target) throws IOException {
 		if (diffFolder == null) {
 			diffFolder = new File(target, "diff-reports");
+			FileUtils.deleteQuietly(diffFolder);
 			FileUtils.forceMkdir(diffFolder);
 			FileUtils.forceMkdir(new File(diffFolder, "diffs"));
 		}

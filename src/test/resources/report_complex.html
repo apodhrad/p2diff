@@ -1,0 +1,1397 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Diff View</title>
+		<meta charset="utf-8">
+		<link href="css/style.css" rel="stylesheet">
+		<script src="js/script.js"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+	</head>
+	
+	<body>
+		<h1>Diff View</h1>
+		
+		<div class="filtering">
+			<form>
+				<p>
+					<label for="search">
+					<input type="text" id="search" name="search" placeholder="Search">
+				</p>
+				<p>
+					<label for="same-hide">Show same files</label>
+					<input type="checkbox" id="same-hide" name="same-hide" checked>
+				</p>
+				<p>
+					<label for="added-hide">Show added files</label>
+					<input type="checkbox" id="added-hide" name="added-hide" checked>
+				</p>
+				<p>
+					<label for="deleted-hide">Show deleted files</label>
+					<input type="checkbox" id="deleted-hide" name="deleted-hide" checked>
+				</p>
+				<p>
+					<label for="changed-hide">Show changed files</label>
+					<input type="checkbox" id="changed-hide" name="changed-hide" checked>
+				</p>
+				<p>
+					<label for="diff-hide">Show files with diff</label>
+					<input type="checkbox" id="diff-hide" name="diff-hide" checked>
+				</p>
+
+				<div class="clear"></div>
+			</form>
+		</div>
+		<table>
+			<tr>
+				<th>Name</th>
+				<th>Original version</th>
+				<th>Revised version</th>
+				<th>Action</th>
+			</tr>
+			<tr class="same">
+				<td>artifacts</td>
+				<td>-</td>
+				<td>-</td>
+				<td></td>
+			</tr>
+			<tr class="same">
+				<td>buildinfo.</td>
+				<td>-</td>
+				<td>-</td>
+				<td></td>
+			</tr>
+			<tr class="same">
+				<td>category</td>
+				<td>-</td>
+				<td>-</td>
+				<td></td>
+			</tr>
+			<tr class="same">
+				<td>content</td>
+				<td>-</td>
+				<td>-</td>
+				<td></td>
+			</tr>
+			<tr class="changed">
+				<td>features/org.drools.eclipse.feature</td>
+				<td>6.4.0.201601201107</td>
+				<td>6.4.1.Final-v20160503-1355-B205</td>
+				<td></td>
+			</tr>
+			<tr class="same">
+				<td>features/org.eclipse.bpel.apache.ode.runtime.feature</td>
+				<td>1.0.5.Final-v20160115-1558</td>
+				<td>1.0.5.Final-v20160115-1558</td>
+				<td></td>
+			</tr>
+			<tr class="same">
+				<td>features/org.eclipse.bpel.common.feature</td>
+				<td>1.0.5.Final-v20160115-1558</td>
+				<td>1.0.5.Final-v20160115-1558</td>
+				<td></td>
+			</tr>
+			<tr class="same">
+				<td>features/org.eclipse.bpel.feature</td>
+				<td>1.0.5.Final-v20160115-1558</td>
+				<td>1.0.5.Final-v20160115-1558</td>
+				<td></td>
+			</tr>
+			<tr class="same">
+				<td>features/org.eclipse.bpmn2.feature</td>
+				<td>1.2.1.Final-v20160218-1950-B212</td>
+				<td>1.2.1.Final-v20160218-1950-B212</td>
+				<td></td>
+			</tr>
+			<tr class="changed">
+				<td>features/org.eclipse.bpmn2.modeler</td>
+				<td>1.2.3.Final-v20160226-1723-B97</td>
+				<td>1.2.4.Final-v20160330-1625-B110</td>
+				<td></td>
+			</tr>
+			<tr class="changed">
+				<td>features/org.eclipse.bpmn2.modeler.examples</td>
+				<td>1.2.3.Final-v20160226-1723-B97</td>
+				<td>1.2.4.Final-v20160330-1625-B110</td>
+				<td></td>
+			</tr>
+			<tr class="changed">
+				<td>features/org.eclipse.bpmn2.modeler.runtime.jboss</td>
+				<td>1.2.3.Final-v20160226-1723-B97</td>
+				<td>1.2.4.Final-v20160330-1625-B110</td>
+				<td></td>
+			</tr>
+			<tr class="changed">
+				<td>features/org.fusesource.ide.camel.editor.feature</td>
+				<td>8.0.0.Beta1-v20160222-1935-B731</td>
+				<td>8.0.0.Beta2-v20160401-1305-B821</td>
+				<td></td>
+			</tr>
+			<tr class="changed">
+				<td>features/org.fusesource.ide.core.feature</td>
+				<td>8.0.0.Beta1-v20160222-1935-B731</td>
+				<td>8.0.0.Beta2-v20160401-1305-B821</td>
+				<td></td>
+			</tr>
+			<tr class="changed">
+				<td>features/org.fusesource.ide.jmx.feature</td>
+				<td>8.0.0.Beta1-v20160222-1935-B731</td>
+				<td>8.0.0.Beta2-v20160401-1305-B821</td>
+				<td></td>
+			</tr>
+			<tr class="changed">
+				<td>features/org.fusesource.ide.server.extensions.feature</td>
+				<td>8.0.0.Beta1-v20160222-1935-B731</td>
+				<td>8.0.0.Beta2-v20160401-1305-B821</td>
+				<td></td>
+			</tr>
+			<tr class="changed">
+				<td>features/org.guvnor.tools.feature</td>
+				<td>6.4.0.201601201107</td>
+				<td>6.4.1.Final-v20160503-1355-B205</td>
+				<td></td>
+			</tr>
+			<tr class="changed">
+				<td>features/org.jboss.tools.bpel.feature</td>
+				<td>1.3.200.Beta1-v20151201-2056-B14</td>
+				<td>1.3.200.Final-v20160331-1749-B19</td>
+				<td></td>
+			</tr>
+			<tr class="same">
+				<td>features/org.jboss.tools.esb.feature</td>
+				<td>1.6.100.Final-v20160222-1517-B5</td>
+				<td>1.6.100.Final-v20160222-1517-B5</td>
+				<td></td>
+			</tr>
+			<tr class="same">
+				<td>features/org.jboss.tools.foundation.security.linux.feature</td>
+				<td>1.2.1.Beta2-v20160127-2129-B77</td>
+				<td>1.2.1.Beta2-v20160127-2129-B77</td>
+				<td></td>
+			</tr>
+			<tr class="changed">
+				<td>features/org.jboss.tools.fuse.transformation.feature</td>
+				<td>8.0.0.Beta1-v20160222-1935-B731</td>
+				<td>8.0.0.Beta2-v20160401-1305-B821</td>
+				<td></td>
+			</tr>
+			<tr class="same">
+				<td>features/org.jboss.tools.jbpm.common.feature</td>
+				<td>4.5.200.Final-v20130815-1941-B2008</td>
+				<td>4.5.200.Final-v20130815-1941-B2008</td>
+				<td></td>
+			</tr>
+			<tr class="same">
+				<td>features/org.jboss.tools.jbpm.convert.feature</td>
+				<td>4.5.200.Final-v20130815-1941-B2008</td>
+				<td>4.5.200.Final-v20130815-1941-B2008</td>
+				<td></td>
+			</tr>
+			<tr class="same">
+				<td>features/org.jboss.tools.jbpm3.feature</td>
+				<td>4.5.200.Final-v20130815-1941-B2008</td>
+				<td>4.5.200.Final-v20130815-1941-B2008</td>
+				<td></td>
+			</tr>
+			<tr class="same">
+				<td>features/org.jboss.tools.modeshape.jcr.feature</td>
+				<td>3.8.0.Beta1-v20150915-1710-B210</td>
+				<td>3.8.0.Beta1-v20150915-1710-B210</td>
+				<td></td>
+			</tr>
+			<tr class="same">
+				<td>features/org.jboss.tools.modeshape.rest.feature</td>
+				<td>3.8.0.Beta1-v20150915-1710-B210</td>
+				<td>3.8.0.Beta1-v20150915-1710-B210</td>
+				<td></td>
+			</tr>
+			<tr class="changed">
+				<td>features/org.jboss.tools.runtime.drools.detector.feature</td>
+				<td>6.4.0.201601201107</td>
+				<td>6.4.1.Final-v20160503-1355-B205</td>
+				<td></td>
+			</tr>
+			<tr class="same">
+				<td>features/org.jboss.tools.runtime.esb.detector.feature</td>
+				<td>1.6.100.Final-v20160222-1517-B5</td>
+				<td>1.6.100.Final-v20160222-1517-B5</td>
+				<td></td>
+			</tr>
+			<tr class="same">
+				<td>features/org.jboss.tools.runtime.jbpm.detector.feature</td>
+				<td>4.5.200.Final-v20130815-1941-B2008</td>
+				<td>4.5.200.Final-v20130815-1941-B2008</td>
+				<td></td>
+			</tr>
+			<tr class="changed">
+				<td>features/org.jbpm.eclipse.feature</td>
+				<td>6.4.0.201601201107</td>
+				<td>6.4.1.Final-v20160503-1355-B205</td>
+				<td></td>
+			</tr>
+			<tr class="same">
+				<td>features/org.jbpm.gd.jpdl.feature</td>
+				<td>4.5.200.Final-v20130815-1941-B2008</td>
+				<td>4.5.200.Final-v20130815-1941-B2008</td>
+				<td></td>
+			</tr>
+			<tr class="changed">
+				<td>features/org.kie.eclipse.feature</td>
+				<td>6.4.0.201601201107</td>
+				<td>6.4.1.Final-v20160503-1355-B205</td>
+				<td></td>
+			</tr>
+			<tr class="changed">
+				<td>features/org.kie.eclipse.navigator.feature</td>
+				<td>6.4.0.201601201107</td>
+				<td>6.4.1.Final-v20160503-1355-B205</td>
+				<td></td>
+			</tr>
+			<tr class="same">
+				<td>features/org.switchyard.tools.bpel.feature</td>
+				<td>2.1.0.Beta3-v20160226-2057-B645</td>
+				<td>2.1.0.Beta3-v20160226-2057-B645</td>
+				<td></td>
+			</tr>
+			<tr class="same">
+				<td>features/org.switchyard.tools.bpmn2.feature</td>
+				<td>2.1.0.Beta3-v20160226-2057-B645</td>
+				<td>2.1.0.Beta3-v20160226-2057-B645</td>
+				<td></td>
+			</tr>
+			<tr class="same">
+				<td>features/org.switchyard.tools.feature</td>
+				<td>2.1.0.Beta3-v20160226-2057-B645</td>
+				<td>2.1.0.Beta3-v20160226-2057-B645</td>
+				<td></td>
+			</tr>
+			<tr class="same">
+				<td>features/org.teiid.datatools.connectivity.feature</td>
+				<td>10.0.0.Beta3-v20160218-1807-B4076</td>
+				<td>10.0.0.Beta3-v20160218-1807-B4076</td>
+				<td></td>
+			</tr>
+			<tr class="same">
+				<td>features/org.teiid.designer.feature</td>
+				<td>10.0.0.Beta3-v20160218-1807-B4076</td>
+				<td>10.0.0.Beta3-v20160218-1807-B4076</td>
+				<td></td>
+			</tr>
+			<tr class="same">
+				<td>features/org.teiid.designer.library.feature</td>
+				<td>10.0.0.Beta3-v20160218-1807-B4076</td>
+				<td>10.0.0.Beta3-v20160218-1807-B4076</td>
+				<td></td>
+			</tr>
+			<tr class="same">
+				<td>features/org.teiid.designer.runtime.feature</td>
+				<td>10.0.0.Beta3-v20160218-1807-B4076</td>
+				<td>10.0.0.Beta3-v20160218-1807-B4076</td>
+				<td></td>
+			</tr>
+			<tr class="same">
+				<td>features/org.teiid.designer.teiid.client.feature</td>
+				<td>10.0.0.Beta3-v20160218-1807-B4076</td>
+				<td>10.0.0.Beta3-v20160218-1807-B4076</td>
+				<td></td>
+			</tr>
+			<tr class="same">
+				<td>index.</td>
+				<td>-</td>
+				<td>-</td>
+				<td></td>
+			</tr>
+			<tr class="same">
+				<td>plugins/org.apache.directory.studio.slf4j-eclipselog</td>
+				<td>2.0.0.v20150618</td>
+				<td>2.0.0.v20150618</td>
+				<td></td>
+			</tr>
+			<tr class="changed">
+				<td>plugins/org.drools.eclipse</td>
+				<td>6.4.0.201601201107</td>
+				<td>6.4.1.Final-v20160503-1355-B205</td>
+				<td></td>
+			</tr>
+			<tr class="same">
+				<td>plugins/org.eclipse.bpel.apache.ode.deploy.model</td>
+				<td>1.0.5.Final-v20160115-1558</td>
+				<td>1.0.5.Final-v20160115-1558</td>
+				<td></td>
+			</tr>
+			<tr class="same">
+				<td>plugins/org.eclipse.bpel.apache.ode.deploy.ui</td>
+				<td>1.0.5.Final-v20160115-1558</td>
+				<td>1.0.5.Final-v20160115-1558</td>
+				<td></td>
+			</tr>
+			<tr class="same">
+				<td>plugins/org.eclipse.bpel.apache.ode.runtime</td>
+				<td>1.0.5.Final-v20160115-1558</td>
+				<td>1.0.5.Final-v20160115-1558</td>
+				<td></td>
+			</tr>
+			<tr class="same">
+				<td>plugins/org.eclipse.bpel.cheatsheet</td>
+				<td>1.0.5.Final-v20160115-1558</td>
+				<td>1.0.5.Final-v20160115-1558</td>
+				<td></td>
+			</tr>
+			<tr class="same">
+				<td>plugins/org.eclipse.bpel.common.model</td>
+				<td>1.0.5.Final-v20160115-1558</td>
+				<td>1.0.5.Final-v20160115-1558</td>
+				<td></td>
+			</tr>
+			<tr class="same">
+				<td>plugins/org.eclipse.bpel.common.ui</td>
+				<td>1.0.5.Final-v20160115-1558</td>
+				<td>1.0.5.Final-v20160115-1558</td>
+				<td></td>
+			</tr>
+			<tr class="same">
+				<td>plugins/org.eclipse.bpel.common.wsdl</td>
+				<td>1.0.5.Final-v20160115-1558</td>
+				<td>1.0.5.Final-v20160115-1558</td>
+				<td></td>
+			</tr>
+			<tr class="same">
+				<td>plugins/org.eclipse.bpel.help</td>
+				<td>1.0.5.Final-v20160115-1558</td>
+				<td>1.0.5.Final-v20160115-1558</td>
+				<td></td>
+			</tr>
+			<tr class="same">
+				<td>plugins/org.eclipse.bpel.model</td>
+				<td>1.0.5.Final-v20160115-1558</td>
+				<td>1.0.5.Final-v20160115-1558</td>
+				<td></td>
+			</tr>
+			<tr class="same">
+				<td>plugins/org.eclipse.bpel.runtimes</td>
+				<td>1.0.5.Final-v20160115-1558</td>
+				<td>1.0.5.Final-v20160115-1558</td>
+				<td></td>
+			</tr>
+			<tr class="same">
+				<td>plugins/org.eclipse.bpel.ui</td>
+				<td>1.0.5.Final-v20160115-1558</td>
+				<td>1.0.5.Final-v20160115-1558</td>
+				<td></td>
+			</tr>
+			<tr class="same">
+				<td>plugins/org.eclipse.bpel.validator</td>
+				<td>1.0.5.Final-v20160115-1558</td>
+				<td>1.0.5.Final-v20160115-1558</td>
+				<td></td>
+			</tr>
+			<tr class="same">
+				<td>plugins/org.eclipse.bpel.wsil.model</td>
+				<td>1.0.5.Final-v20160115-1558</td>
+				<td>1.0.5.Final-v20160115-1558</td>
+				<td></td>
+			</tr>
+			<tr class="same">
+				<td>plugins/org.eclipse.bpel.xpath10</td>
+				<td>1.0.5.Final-v20160115-1558</td>
+				<td>1.0.5.Final-v20160115-1558</td>
+				<td></td>
+			</tr>
+			<tr class="same">
+				<td>plugins/org.eclipse.bpmn2</td>
+				<td>1.2.1.Final-v20160218-1950-B212</td>
+				<td>1.2.1.Final-v20160218-1950-B212</td>
+				<td></td>
+			</tr>
+			<tr class="same">
+				<td>plugins/org.eclipse.bpmn2.edit</td>
+				<td>1.2.1.Final-v20160218-1950-B212</td>
+				<td>1.2.1.Final-v20160218-1950-B212</td>
+				<td></td>
+			</tr>
+			<tr class="same">
+				<td>plugins/org.eclipse.bpmn2.editor</td>
+				<td>1.2.1.Final-v20160218-1950-B212</td>
+				<td>1.2.1.Final-v20160218-1950-B212</td>
+				<td></td>
+			</tr>
+			<tr class="changed">
+				<td>plugins/org.eclipse.bpmn2.modeler.core</td>
+				<td>1.2.3.Final-v20160226-1723-B97</td>
+				<td>1.2.4.Final-v20160330-1625-B110</td>
+				<td></td>
+			</tr>
+			<tr class="changed">
+				<td>plugins/org.eclipse.bpmn2.modeler.examples.customtask</td>
+				<td>1.2.3.Final-v20160226-1723-B97</td>
+				<td>1.2.4.Final-v20160330-1625-B110</td>
+				<td></td>
+			</tr>
+			<tr class="changed">
+				<td>plugins/org.eclipse.bpmn2.modeler.examples.dynamic</td>
+				<td>1.2.3.Final-v20160226-1723-B97</td>
+				<td>1.2.4.Final-v20160330-1625-B110</td>
+				<td></td>
+			</tr>
+			<tr class="changed">
+				<td>plugins/org.eclipse.bpmn2.modeler.examples.modelreader</td>
+				<td>1.2.3.Final-v20160226-1723-B97</td>
+				<td>1.2.4.Final-v20160330-1625-B110</td>
+				<td></td>
+			</tr>
+			<tr class="changed">
+				<td>plugins/org.eclipse.bpmn2.modeler.help</td>
+				<td>1.2.3.Final-v20160226-1723-B97</td>
+				<td>1.2.4.Final-v20160330-1625-B110</td>
+				<td></td>
+			</tr>
+			<tr class="changed">
+				<td>plugins/org.eclipse.bpmn2.modeler.runtime.jboss.jbpm</td>
+				<td>1.2.3.Final-v20160226-1723-B97</td>
+				<td>1.2.4.Final-v20160330-1625-B110</td>
+				<td></td>
+			</tr>
+			<tr class="changed">
+				<td>plugins/org.eclipse.bpmn2.modeler.ui</td>
+				<td>1.2.3.Final-v20160226-1723-B97</td>
+				<td>1.2.4.Final-v20160330-1625-B110</td>
+				<td></td>
+			</tr>
+			<tr class="changed">
+				<td>plugins/org.fusesource.ide.branding</td>
+				<td>8.0.0.Beta1-v20160222-1935-B731</td>
+				<td>8.0.0.Beta2-v20160401-1305-B821</td>
+				<td></td>
+			</tr>
+			<tr class="changed">
+				<td>plugins/org.fusesource.ide.camel.editor</td>
+				<td>8.0.0.Beta1-v20160222-1935-B731</td>
+				<td>8.0.0.Beta2-v20160401-1305-B821</td>
+				<td></td>
+			</tr>
+			<tr class="changed">
+				<td>plugins/org.fusesource.ide.camel.model.service.core</td>
+				<td>8.0.0.Beta1-v20160222-1935-B731</td>
+				<td>8.0.0.Beta2-v20160401-1305-B821</td>
+				<td></td>
+			</tr>
+			<tr class="same">
+				<td>plugins/org.fusesource.ide.camel.model.service.v2</td>
+				<td>15</td>
+				<td>15</td>
+				<td></td>
+			</tr>
+			<tr class="changed">
+				<td>plugins/org.fusesource.ide.camel.model.service.v2</td>
+				<td>15</td>
+				<td>16</td>
+				<td></td>
+			</tr>
+			<tr class="same">
+				<td>plugins/org.fusesource.ide.camel.model.service.v2</td>
+				<td>15</td>
+				<td>15</td>
+				<td></td>
+			</tr>
+			<tr class="changed">
+				<td>plugins/org.fusesource.ide.camel.validation</td>
+				<td>8.0.0.Beta1-v20160222-1935-B731</td>
+				<td>8.0.0.Beta2-v20160401-1305-B821</td>
+				<td></td>
+			</tr>
+			<tr class="changed">
+				<td>plugins/org.fusesource.ide.catalogs</td>
+				<td>8.0.0.Beta1-v20160222-1935-B731</td>
+				<td>8.0.0.Beta2-v20160401-1305-B821</td>
+				<td></td>
+			</tr>
+			<tr class="changed">
+				<td>plugins/org.fusesource.ide.cheatsheets</td>
+				<td>8.0.0.Beta1-v20160222-1935-B731</td>
+				<td>8.0.0.Beta2-v20160401-1305-B821</td>
+				<td></td>
+			</tr>
+			<tr class="changed">
+				<td>plugins/org.fusesource.ide.foundation.core</td>
+				<td>8.0.0.Beta1-v20160222-1935-B731</td>
+				<td>8.0.0.Beta2-v20160401-1305-B821</td>
+				<td></td>
+			</tr>
+			<tr class="changed">
+				<td>plugins/org.fusesource.ide.foundation.ui</td>
+				<td>8.0.0.Beta1-v20160222-1935-B731</td>
+				<td>8.0.0.Beta2-v20160401-1305-B821</td>
+				<td></td>
+			</tr>
+			<tr class="changed">
+				<td>plugins/org.fusesource.ide.graph</td>
+				<td>8.0.0.Beta1-v20160222-1935-B731</td>
+				<td>8.0.0.Beta2-v20160401-1305-B821</td>
+				<td></td>
+			</tr>
+			<tr class="changed">
+				<td>plugins/org.fusesource.ide.help</td>
+				<td>8.0.0.Beta1-v20160222-1935-B731</td>
+				<td>8.0.0.Beta2-v20160401-1305-B821</td>
+				<td></td>
+			</tr>
+			<tr class="changed">
+				<td>plugins/org.fusesource.ide.imports</td>
+				<td>8.0.0.Beta1-v20160222-1935-B731</td>
+				<td>8.0.0.Beta2-v20160401-1305-B821</td>
+				<td></td>
+			</tr>
+			<tr class="changed">
+				<td>plugins/org.fusesource.ide.jmx.activemq</td>
+				<td>8.0.0.Beta1-v20160222-1935-B731</td>
+				<td>8.0.0.Beta2-v20160401-1305-B821</td>
+				<td></td>
+			</tr>
+			<tr class="changed">
+				<td>plugins/org.fusesource.ide.jmx.camel</td>
+				<td>8.0.0.Beta1-v20160222-1935-B731</td>
+				<td>8.0.0.Beta2-v20160401-1305-B821</td>
+				<td></td>
+			</tr>
+			<tr class="changed">
+				<td>plugins/org.fusesource.ide.jmx.commons</td>
+				<td>8.0.0.Beta1-v20160222-1935-B731</td>
+				<td>8.0.0.Beta2-v20160401-1305-B821</td>
+				<td></td>
+			</tr>
+			<tr class="changed">
+				<td>plugins/org.fusesource.ide.jmx.karaf</td>
+				<td>8.0.0.Beta1-v20160222-1935-B731</td>
+				<td>8.0.0.Beta2-v20160401-1305-B821</td>
+				<td></td>
+			</tr>
+			<tr class="changed">
+				<td>plugins/org.fusesource.ide.jmx.servicemix</td>
+				<td>8.0.0.Beta1-v20160222-1935-B731</td>
+				<td>8.0.0.Beta2-v20160401-1305-B821</td>
+				<td></td>
+			</tr>
+			<tr class="changed">
+				<td>plugins/org.fusesource.ide.launcher</td>
+				<td>8.0.0.Beta1-v20160222-1935-B731</td>
+				<td>8.0.0.Beta2-v20160401-1305-B821</td>
+				<td></td>
+			</tr>
+			<tr class="changed">
+				<td>plugins/org.fusesource.ide.launcher.ui</td>
+				<td>8.0.0.Beta1-v20160222-1935-B731</td>
+				<td>8.0.0.Beta2-v20160401-1305-B821</td>
+				<td></td>
+			</tr>
+			<tr class="changed">
+				<td>plugins/org.fusesource.ide.maven</td>
+				<td>8.0.0.Beta1-v20160222-1935-B731</td>
+				<td>8.0.0.Beta2-v20160401-1305-B821</td>
+				<td></td>
+			</tr>
+			<tr class="changed">
+				<td>plugins/org.fusesource.ide.preferences</td>
+				<td>8.0.0.Beta1-v20160222-1935-B731</td>
+				<td>8.0.0.Beta2-v20160401-1305-B821</td>
+				<td></td>
+			</tr>
+			<tr class="changed">
+				<td>plugins/org.fusesource.ide.project</td>
+				<td>8.0.0.Beta1-v20160222-1935-B731</td>
+				<td>8.0.0.Beta2-v20160401-1305-B821</td>
+				<td></td>
+			</tr>
+			<tr class="changed">
+				<td>plugins/org.fusesource.ide.server.commons</td>
+				<td>8.0.0.Beta1-v20160222-1935-B731</td>
+				<td>8.0.0.Beta2-v20160401-1305-B821</td>
+				<td></td>
+			</tr>
+			<tr class="changed">
+				<td>plugins/org.fusesource.ide.server.fuse.core</td>
+				<td>8.0.0.Beta1-v20160222-1935-B731</td>
+				<td>8.0.0.Beta2-v20160401-1305-B821</td>
+				<td></td>
+			</tr>
+			<tr class="changed">
+				<td>plugins/org.fusesource.ide.server.fuse.ui</td>
+				<td>8.0.0.Beta1-v20160222-1935-B731</td>
+				<td>8.0.0.Beta2-v20160401-1305-B821</td>
+				<td></td>
+			</tr>
+			<tr class="changed">
+				<td>plugins/org.fusesource.ide.server.karaf.core</td>
+				<td>8.0.0.Beta1-v20160222-1935-B731</td>
+				<td>8.0.0.Beta2-v20160401-1305-B821</td>
+				<td></td>
+			</tr>
+			<tr class="changed">
+				<td>plugins/org.fusesource.ide.server.karaf.ui</td>
+				<td>8.0.0.Beta1-v20160222-1935-B731</td>
+				<td>8.0.0.Beta2-v20160401-1305-B821</td>
+				<td></td>
+			</tr>
+			<tr class="changed">
+				<td>plugins/org.fusesource.ide.server.servicemix.core</td>
+				<td>8.0.0.Beta1-v20160222-1935-B731</td>
+				<td>8.0.0.Beta2-v20160401-1305-B821</td>
+				<td></td>
+			</tr>
+			<tr class="changed">
+				<td>plugins/org.fusesource.ide.server.servicemix.ui</td>
+				<td>8.0.0.Beta1-v20160222-1935-B731</td>
+				<td>8.0.0.Beta2-v20160401-1305-B821</td>
+				<td></td>
+			</tr>
+			<tr class="changed">
+				<td>plugins/org.fusesource.ide.tooling</td>
+				<td>8.0.0.Beta1-v20160222-1935-B731</td>
+				<td>8.0.0.Beta2-v20160401-1305-B821</td>
+				<td></td>
+			</tr>
+			<tr class="changed">
+				<td>plugins/org.guvnor.eclipse.webdav</td>
+				<td>6.4.0.201601201107</td>
+				<td>6.4.1.Final-v20160503-1355-B205</td>
+				<td></td>
+			</tr>
+			<tr class="changed">
+				<td>plugins/org.guvnor.tools</td>
+				<td>6.4.0.201601201107</td>
+				<td>6.4.1.Final-v20160503-1355-B205</td>
+				<td></td>
+			</tr>
+			<tr class="changed">
+				<td>plugins/org.jboss.tools.bpel.runtimes</td>
+				<td>1.3.200.Beta1-v20151201-2056-B14</td>
+				<td>1.3.200.Final-v20160331-1749-B19</td>
+				<td></td>
+			</tr>
+			<tr class="same">
+				<td>plugins/org.jboss.tools.esb.core</td>
+				<td>1.6.100.Final-v20160222-1517-B5</td>
+				<td>1.6.100.Final-v20160222-1517-B5</td>
+				<td></td>
+			</tr>
+			<tr class="same">
+				<td>plugins/org.jboss.tools.esb.examples</td>
+				<td>1.6.100.Final-v20160222-1517-B5</td>
+				<td>1.6.100.Final-v20160222-1517-B5</td>
+				<td></td>
+			</tr>
+			<tr class="same">
+				<td>plugins/org.jboss.tools.esb.project.core</td>
+				<td>1.6.100.Final-v20160222-1517-B5</td>
+				<td>1.6.100.Final-v20160222-1517-B5</td>
+				<td></td>
+			</tr>
+			<tr class="same">
+				<td>plugins/org.jboss.tools.esb.project.ui</td>
+				<td>1.6.100.Final-v20160222-1517-B5</td>
+				<td>1.6.100.Final-v20160222-1517-B5</td>
+				<td></td>
+			</tr>
+			<tr class="same">
+				<td>plugins/org.jboss.tools.esb.ui</td>
+				<td>1.6.100.Final-v20160222-1517-B5</td>
+				<td>1.6.100.Final-v20160222-1517-B5</td>
+				<td></td>
+			</tr>
+			<tr class="same">
+				<td>plugins/org.jboss.tools.esb.validator</td>
+				<td>1.6.100.Final-v20160222-1517-B5</td>
+				<td>1.6.100.Final-v20160222-1517-B5</td>
+				<td></td>
+			</tr>
+			<tr class="same">
+				<td>plugins/org.jboss.tools.foundation.security.linux</td>
+				<td>1.2.1.Beta2-v20160127-2129-B77</td>
+				<td>1.2.1.Beta2-v20160127-2129-B77</td>
+				<td></td>
+			</tr>
+			<tr class="changed">
+				<td>plugins/org.jboss.tools.fuse.transformation.core</td>
+				<td>8.0.0.Beta1-v20160222-1935-B731</td>
+				<td>8.0.0.Beta2-v20160401-1305-B821</td>
+				<td></td>
+			</tr>
+			<tr class="changed">
+				<td>plugins/org.jboss.tools.fuse.transformation.editor</td>
+				<td>8.0.0.Beta1-v20160222-1935-B731</td>
+				<td>8.0.0.Beta2-v20160401-1305-B821</td>
+				<td></td>
+			</tr>
+			<tr class="same">
+				<td>plugins/org.jboss.tools.jbpm.common</td>
+				<td>4.5.200.Final-v20130815-1941-B2008</td>
+				<td>4.5.200.Final-v20130815-1941-B2008</td>
+				<td></td>
+			</tr>
+			<tr class="same">
+				<td>plugins/org.jboss.tools.jbpm.convert</td>
+				<td>4.5.200.Final-v20130815-1941-B2008</td>
+				<td>4.5.200.Final-v20130815-1941-B2008</td>
+				<td></td>
+			</tr>
+			<tr class="same">
+				<td>plugins/org.jboss.tools.modeshape.client</td>
+				<td>3.8.0.Beta1-v20150915-1710-B210</td>
+				<td>3.8.0.Beta1-v20150915-1710-B210</td>
+				<td></td>
+			</tr>
+			<tr class="same">
+				<td>plugins/org.jboss.tools.modeshape.jcr</td>
+				<td>3.8.0.Beta1-v20150915-1710-B210</td>
+				<td>3.8.0.Beta1-v20150915-1710-B210</td>
+				<td></td>
+			</tr>
+			<tr class="same">
+				<td>plugins/org.jboss.tools.modeshape.jcr.doc.user</td>
+				<td>3.8.0.Beta1-v20150915-1710-B210</td>
+				<td>3.8.0.Beta1-v20150915-1710-B210</td>
+				<td></td>
+			</tr>
+			<tr class="same">
+				<td>plugins/org.jboss.tools.modeshape.jcr.ui</td>
+				<td>3.8.0.Beta1-v20150915-1710-B210</td>
+				<td>3.8.0.Beta1-v20150915-1710-B210</td>
+				<td></td>
+			</tr>
+			<tr class="same">
+				<td>plugins/org.jboss.tools.modeshape.rest</td>
+				<td>3.8.0.Beta1-v20150915-1710-B210</td>
+				<td>3.8.0.Beta1-v20150915-1710-B210</td>
+				<td></td>
+			</tr>
+			<tr class="same">
+				<td>plugins/org.jboss.tools.modeshape.rest.doc.user</td>
+				<td>3.8.0.Beta1-v20150915-1710-B210</td>
+				<td>3.8.0.Beta1-v20150915-1710-B210</td>
+				<td></td>
+			</tr>
+			<tr class="same">
+				<td>plugins/org.jboss.tools.modeshape.ui</td>
+				<td>3.8.0.Beta1-v20150915-1710-B210</td>
+				<td>3.8.0.Beta1-v20150915-1710-B210</td>
+				<td></td>
+			</tr>
+			<tr class="changed">
+				<td>plugins/org.jboss.tools.runtime.drools.detector</td>
+				<td>6.4.0.201601201107</td>
+				<td>6.4.1.Final-v20160503-1355-B205</td>
+				<td></td>
+			</tr>
+			<tr class="same">
+				<td>plugins/org.jboss.tools.runtime.esb.detector</td>
+				<td>1.6.100.Final-v20160222-1517-B5</td>
+				<td>1.6.100.Final-v20160222-1517-B5</td>
+				<td></td>
+			</tr>
+			<tr class="same">
+				<td>plugins/org.jboss.tools.runtime.jbpm.detector</td>
+				<td>4.5.200.Final-v20130815-1941-B2008</td>
+				<td>4.5.200.Final-v20130815-1941-B2008</td>
+				<td></td>
+			</tr>
+			<tr class="changed">
+				<td>plugins/org.jbpm.eclipse</td>
+				<td>6.4.0.201601201107</td>
+				<td>6.4.1.Final-v20160503-1355-B205</td>
+				<td></td>
+			</tr>
+			<tr class="same">
+				<td>plugins/org.jbpm.gd.jpdl</td>
+				<td>4.5.200.Final-v20130815-1941-B2008</td>
+				<td>4.5.200.Final-v20130815-1941-B2008</td>
+				<td></td>
+			</tr>
+			<tr class="changed">
+				<td>plugins/org.kie.eclipse</td>
+				<td>6.4.0.201601201107</td>
+				<td>6.4.1.Final-v20160503-1355-B205</td>
+				<td></td>
+			</tr>
+			<tr class="changed">
+				<td>plugins/org.kie.eclipse.navigator</td>
+				<td>6.4.0.201601201107</td>
+				<td>6.4.1.Final-v20160503-1355-B205</td>
+				<td></td>
+			</tr>
+			<tr class="same">
+				<td>plugins/org.switchyard.tools</td>
+				<td>2.1.0.Beta3-v20160226-2057-B645</td>
+				<td>2.1.0.Beta3-v20160226-2057-B645</td>
+				<td></td>
+			</tr>
+			<tr class="same">
+				<td>plugins/org.switchyard.tools.core</td>
+				<td>2.1.0.Beta3-v20160226-2057-B645</td>
+				<td>2.1.0.Beta3-v20160226-2057-B645</td>
+				<td></td>
+			</tr>
+			<tr class="same">
+				<td>plugins/org.switchyard.tools.cxf</td>
+				<td>2.1.0.Beta3-v20160226-2057-B645</td>
+				<td>2.1.0.Beta3-v20160226-2057-B645</td>
+				<td></td>
+			</tr>
+			<tr class="same">
+				<td>plugins/org.switchyard.tools.m2e</td>
+				<td>2.1.0.Beta3-v20160226-2057-B645</td>
+				<td>2.1.0.Beta3-v20160226-2057-B645</td>
+				<td></td>
+			</tr>
+			<tr class="same">
+				<td>plugins/org.switchyard.tools.models.sca.core</td>
+				<td>2.1.0.Beta3-v20160226-2057-B645</td>
+				<td>2.1.0.Beta3-v20160226-2057-B645</td>
+				<td></td>
+			</tr>
+			<tr class="same">
+				<td>plugins/org.switchyard.tools.models.sca.core.edit</td>
+				<td>2.1.0.Beta3-v20160226-2057-B645</td>
+				<td>2.1.0.Beta3-v20160226-2057-B645</td>
+				<td></td>
+			</tr>
+			<tr class="same">
+				<td>plugins/org.switchyard.tools.models.sca.sca1</td>
+				<td>1.edit</td>
+				<td>1.edit</td>
+				<td></td>
+			</tr>
+			<tr class="same">
+				<td>plugins/org.switchyard.tools.models.sca.sca1</td>
+				<td>1</td>
+				<td>1</td>
+				<td></td>
+			</tr>
+			<tr class="same">
+				<td>plugins/org.switchyard.tools.models.switchyard1</td>
+				<td>0</td>
+				<td>0</td>
+				<td></td>
+			</tr>
+			<tr class="same">
+				<td>plugins/org.switchyard.tools.ui</td>
+				<td>2.1.0.Beta3-v20160226-2057-B645</td>
+				<td>2.1.0.Beta3-v20160226-2057-B645</td>
+				<td></td>
+			</tr>
+			<tr class="same">
+				<td>plugins/org.switchyard.tools.ui.bpel</td>
+				<td>2.1.0.Beta3-v20160226-2057-B645</td>
+				<td>2.1.0.Beta3-v20160226-2057-B645</td>
+				<td></td>
+			</tr>
+			<tr class="same">
+				<td>plugins/org.switchyard.tools.ui.bpmn2</td>
+				<td>2.1.0.Beta3-v20160226-2057-B645</td>
+				<td>2.1.0.Beta3-v20160226-2057-B645</td>
+				<td></td>
+			</tr>
+			<tr class="same">
+				<td>plugins/org.switchyard.tools.ui.debug</td>
+				<td>2.1.0.Beta3-v20160226-2057-B645</td>
+				<td>2.1.0.Beta3-v20160226-2057-B645</td>
+				<td></td>
+			</tr>
+			<tr class="same">
+				<td>plugins/org.switchyard.tools.ui.editor</td>
+				<td>2.1.0.Beta3-v20160226-2057-B645</td>
+				<td>2.1.0.Beta3-v20160226-2057-B645</td>
+				<td></td>
+			</tr>
+			<tr class="same">
+				<td>plugins/org.switchyard.tools.xsd</td>
+				<td>2.1.0.Beta3-v20160226-2057-B645</td>
+				<td>2.1.0.Beta3-v20160226-2057-B645</td>
+				<td></td>
+			</tr>
+			<tr class="same">
+				<td>plugins/org.teiid.core.designer</td>
+				<td>10.0.0.Beta3-v20160218-1807-B4076</td>
+				<td>10.0.0.Beta3-v20160218-1807-B4076</td>
+				<td></td>
+			</tr>
+			<tr class="same">
+				<td>plugins/org.teiid.datatools.connectivity</td>
+				<td>10.0.0.Beta3-v20160218-1807-B4076</td>
+				<td>10.0.0.Beta3-v20160218-1807-B4076</td>
+				<td></td>
+			</tr>
+			<tr class="same">
+				<td>plugins/org.teiid.datatools.connectivity.model</td>
+				<td>10.0.0.Beta3-v20160218-1807-B4076</td>
+				<td>10.0.0.Beta3-v20160218-1807-B4076</td>
+				<td></td>
+			</tr>
+			<tr class="same">
+				<td>plugins/org.teiid.datatools.connectivity.ui</td>
+				<td>10.0.0.Beta3-v20160218-1807-B4076</td>
+				<td>10.0.0.Beta3-v20160218-1807-B4076</td>
+				<td></td>
+			</tr>
+			<tr class="same">
+				<td>plugins/org.teiid.datatools.connectivity.ui.flatfile</td>
+				<td>10.0.0.Beta3-v20160218-1807-B4076</td>
+				<td>10.0.0.Beta3-v20160218-1807-B4076</td>
+				<td></td>
+			</tr>
+			<tr class="same">
+				<td>plugins/org.teiid.designer</td>
+				<td>10.0.0.Beta3-v20160218-1807-B4076</td>
+				<td>10.0.0.Beta3-v20160218-1807-B4076</td>
+				<td></td>
+			</tr>
+			<tr class="same">
+				<td>plugins/org.teiid.designer.advisor.ui</td>
+				<td>10.0.0.Beta3-v20160218-1807-B4076</td>
+				<td>10.0.0.Beta3-v20160218-1807-B4076</td>
+				<td></td>
+			</tr>
+			<tr class="same">
+				<td>plugins/org.teiid.designer.compare</td>
+				<td>10.0.0.Beta3-v20160218-1807-B4076</td>
+				<td>10.0.0.Beta3-v20160218-1807-B4076</td>
+				<td></td>
+			</tr>
+			<tr class="same">
+				<td>plugins/org.teiid.designer.compare.ui</td>
+				<td>10.0.0.Beta3-v20160218-1807-B4076</td>
+				<td>10.0.0.Beta3-v20160218-1807-B4076</td>
+				<td></td>
+			</tr>
+			<tr class="same">
+				<td>plugins/org.teiid.designer.core</td>
+				<td>10.0.0.Beta3-v20160218-1807-B4076</td>
+				<td>10.0.0.Beta3-v20160218-1807-B4076</td>
+				<td></td>
+			</tr>
+			<tr class="same">
+				<td>plugins/org.teiid.designer.core.xslt</td>
+				<td>10.0.0.Beta3-v20160218-1807-B4076</td>
+				<td>10.0.0.Beta3-v20160218-1807-B4076</td>
+				<td></td>
+			</tr>
+			<tr class="same">
+				<td>plugins/org.teiid.designer.datatools</td>
+				<td>10.0.0.Beta3-v20160218-1807-B4076</td>
+				<td>10.0.0.Beta3-v20160218-1807-B4076</td>
+				<td></td>
+			</tr>
+			<tr class="same">
+				<td>plugins/org.teiid.designer.datatools.ui</td>
+				<td>10.0.0.Beta3-v20160218-1807-B4076</td>
+				<td>10.0.0.Beta3-v20160218-1807-B4076</td>
+				<td></td>
+			</tr>
+			<tr class="same">
+				<td>plugins/org.teiid.designer.ddl</td>
+				<td>10.0.0.Beta3-v20160218-1807-B4076</td>
+				<td>10.0.0.Beta3-v20160218-1807-B4076</td>
+				<td></td>
+			</tr>
+			<tr class="same">
+				<td>plugins/org.teiid.designer.ddl.importer</td>
+				<td>10.0.0.Beta3-v20160218-1807-B4076</td>
+				<td>10.0.0.Beta3-v20160218-1807-B4076</td>
+				<td></td>
+			</tr>
+			<tr class="same">
+				<td>plugins/org.teiid.designer.ddl.importer.ui</td>
+				<td>10.0.0.Beta3-v20160218-1807-B4076</td>
+				<td>10.0.0.Beta3-v20160218-1807-B4076</td>
+				<td></td>
+			</tr>
+			<tr class="same">
+				<td>plugins/org.teiid.designer.ddl.spi</td>
+				<td>10.0.0.Beta3-v20160218-1807-B4076</td>
+				<td>10.0.0.Beta3-v20160218-1807-B4076</td>
+				<td></td>
+			</tr>
+			<tr class="same">
+				<td>plugins/org.teiid.designer.diagram.ui</td>
+				<td>10.0.0.Beta3-v20160218-1807-B4076</td>
+				<td>10.0.0.Beta3-v20160218-1807-B4076</td>
+				<td></td>
+			</tr>
+			<tr class="same">
+				<td>plugins/org.teiid.designer.dqp</td>
+				<td>10.0.0.Beta3-v20160218-1807-B4076</td>
+				<td>10.0.0.Beta3-v20160218-1807-B4076</td>
+				<td></td>
+			</tr>
+			<tr class="same">
+				<td>plugins/org.teiid.designer.dqp.ui</td>
+				<td>10.0.0.Beta3-v20160218-1807-B4076</td>
+				<td>10.0.0.Beta3-v20160218-1807-B4076</td>
+				<td></td>
+			</tr>
+			<tr class="same">
+				<td>plugins/org.teiid.designer.extension</td>
+				<td>10.0.0.Beta3-v20160218-1807-B4076</td>
+				<td>10.0.0.Beta3-v20160218-1807-B4076</td>
+				<td></td>
+			</tr>
+			<tr class="same">
+				<td>plugins/org.teiid.designer.extension.ui</td>
+				<td>10.0.0.Beta3-v20160218-1807-B4076</td>
+				<td>10.0.0.Beta3-v20160218-1807-B4076</td>
+				<td></td>
+			</tr>
+			<tr class="same">
+				<td>plugins/org.teiid.designer.jdbc</td>
+				<td>10.0.0.Beta3-v20160218-1807-B4076</td>
+				<td>10.0.0.Beta3-v20160218-1807-B4076</td>
+				<td></td>
+			</tr>
+			<tr class="same">
+				<td>plugins/org.teiid.designer.jdbc.relational</td>
+				<td>10.0.0.Beta3-v20160218-1807-B4076</td>
+				<td>10.0.0.Beta3-v20160218-1807-B4076</td>
+				<td></td>
+			</tr>
+			<tr class="same">
+				<td>plugins/org.teiid.designer.jdbc.ui</td>
+				<td>10.0.0.Beta3-v20160218-1807-B4076</td>
+				<td>10.0.0.Beta3-v20160218-1807-B4076</td>
+				<td></td>
+			</tr>
+			<tr class="same">
+				<td>plugins/org.teiid.designer.legacy</td>
+				<td>10.0.0.Beta3-v20160218-1807-B4076</td>
+				<td>10.0.0.Beta3-v20160218-1807-B4076</td>
+				<td></td>
+			</tr>
+			<tr class="same">
+				<td>plugins/org.teiid.designer.mapping</td>
+				<td>10.0.0.Beta3-v20160218-1807-B4076</td>
+				<td>10.0.0.Beta3-v20160218-1807-B4076</td>
+				<td></td>
+			</tr>
+			<tr class="same">
+				<td>plugins/org.teiid.designer.mapping.ui</td>
+				<td>10.0.0.Beta3-v20160218-1807-B4076</td>
+				<td>10.0.0.Beta3-v20160218-1807-B4076</td>
+				<td></td>
+			</tr>
+			<tr class="same">
+				<td>plugins/org.teiid.designer.metamodels.builder</td>
+				<td>10.0.0.Beta3-v20160218-1807-B4076</td>
+				<td>10.0.0.Beta3-v20160218-1807-B4076</td>
+				<td></td>
+			</tr>
+			<tr class="same">
+				<td>plugins/org.teiid.designer.metamodels.builder.execution</td>
+				<td>10.0.0.Beta3-v20160218-1807-B4076</td>
+				<td>10.0.0.Beta3-v20160218-1807-B4076</td>
+				<td></td>
+			</tr>
+			<tr class="same">
+				<td>plugins/org.teiid.designer.metamodels.core</td>
+				<td>10.0.0.Beta3-v20160218-1807-B4076</td>
+				<td>10.0.0.Beta3-v20160218-1807-B4076</td>
+				<td></td>
+			</tr>
+			<tr class="same">
+				<td>plugins/org.teiid.designer.metamodels.dependency</td>
+				<td>10.0.0.Beta3-v20160218-1807-B4076</td>
+				<td>10.0.0.Beta3-v20160218-1807-B4076</td>
+				<td></td>
+			</tr>
+			<tr class="same">
+				<td>plugins/org.teiid.designer.metamodels.diagram</td>
+				<td>10.0.0.Beta3-v20160218-1807-B4076</td>
+				<td>10.0.0.Beta3-v20160218-1807-B4076</td>
+				<td></td>
+			</tr>
+			<tr class="same">
+				<td>plugins/org.teiid.designer.metamodels.function</td>
+				<td>10.0.0.Beta3-v20160218-1807-B4076</td>
+				<td>10.0.0.Beta3-v20160218-1807-B4076</td>
+				<td></td>
+			</tr>
+			<tr class="same">
+				<td>plugins/org.teiid.designer.metamodels.relational</td>
+				<td>10.0.0.Beta3-v20160218-1807-B4076</td>
+				<td>10.0.0.Beta3-v20160218-1807-B4076</td>
+				<td></td>
+			</tr>
+			<tr class="same">
+				<td>plugins/org.teiid.designer.metamodels.transformation</td>
+				<td>10.0.0.Beta3-v20160218-1807-B4076</td>
+				<td>10.0.0.Beta3-v20160218-1807-B4076</td>
+				<td></td>
+			</tr>
+			<tr class="same">
+				<td>plugins/org.teiid.designer.metamodels.webservice</td>
+				<td>10.0.0.Beta3-v20160218-1807-B4076</td>
+				<td>10.0.0.Beta3-v20160218-1807-B4076</td>
+				<td></td>
+			</tr>
+			<tr class="same">
+				<td>plugins/org.teiid.designer.metamodels.wsdl</td>
+				<td>10.0.0.Beta3-v20160218-1807-B4076</td>
+				<td>10.0.0.Beta3-v20160218-1807-B4076</td>
+				<td></td>
+			</tr>
+			<tr class="same">
+				<td>plugins/org.teiid.designer.metamodels.xml</td>
+				<td>10.0.0.Beta3-v20160218-1807-B4076</td>
+				<td>10.0.0.Beta3-v20160218-1807-B4076</td>
+				<td></td>
+			</tr>
+			<tr class="same">
+				<td>plugins/org.teiid.designer.metamodels.xsd</td>
+				<td>10.0.0.Beta3-v20160218-1807-B4076</td>
+				<td>10.0.0.Beta3-v20160218-1807-B4076</td>
+				<td></td>
+			</tr>
+			<tr class="same">
+				<td>plugins/org.teiid.designer.metamodels.xsd.ui</td>
+				<td>10.0.0.Beta3-v20160218-1807-B4076</td>
+				<td>10.0.0.Beta3-v20160218-1807-B4076</td>
+				<td></td>
+			</tr>
+			<tr class="same">
+				<td>plugins/org.teiid.designer.modelgenerator</td>
+				<td>10.0.0.Beta3-v20160218-1807-B4076</td>
+				<td>10.0.0.Beta3-v20160218-1807-B4076</td>
+				<td></td>
+			</tr>
+			<tr class="same">
+				<td>plugins/org.teiid.designer.modelgenerator.ldap.ui</td>
+				<td>10.0.0.Beta3-v20160218-1807-B4076</td>
+				<td>10.0.0.Beta3-v20160218-1807-B4076</td>
+				<td></td>
+			</tr>
+			<tr class="same">
+				<td>plugins/org.teiid.designer.modelgenerator.salesforce</td>
+				<td>10.0.0.Beta3-v20160218-1807-B4076</td>
+				<td>10.0.0.Beta3-v20160218-1807-B4076</td>
+				<td></td>
+			</tr>
+			<tr class="same">
+				<td>plugins/org.teiid.designer.modelgenerator.salesforce.lib</td>
+				<td>10.0.0.Beta3-v20160218-1807-B4076</td>
+				<td>10.0.0.Beta3-v20160218-1807-B4076</td>
+				<td></td>
+			</tr>
+			<tr class="same">
+				<td>plugins/org.teiid.designer.modelgenerator.salesforce.ui</td>
+				<td>10.0.0.Beta3-v20160218-1807-B4076</td>
+				<td>10.0.0.Beta3-v20160218-1807-B4076</td>
+				<td></td>
+			</tr>
+			<tr class="same">
+				<td>plugins/org.teiid.designer.modelgenerator.ui</td>
+				<td>10.0.0.Beta3-v20160218-1807-B4076</td>
+				<td>10.0.0.Beta3-v20160218-1807-B4076</td>
+				<td></td>
+			</tr>
+			<tr class="same">
+				<td>plugins/org.teiid.designer.modelgenerator.wsdl</td>
+				<td>10.0.0.Beta3-v20160218-1807-B4076</td>
+				<td>10.0.0.Beta3-v20160218-1807-B4076</td>
+				<td></td>
+			</tr>
+			<tr class="same">
+				<td>plugins/org.teiid.designer.modelgenerator.wsdl.ui</td>
+				<td>10.0.0.Beta3-v20160218-1807-B4076</td>
+				<td>10.0.0.Beta3-v20160218-1807-B4076</td>
+				<td></td>
+			</tr>
+			<tr class="same">
+				<td>plugins/org.teiid.designer.modelgenerator.xml</td>
+				<td>10.0.0.Beta3-v20160218-1807-B4076</td>
+				<td>10.0.0.Beta3-v20160218-1807-B4076</td>
+				<td></td>
+			</tr>
+			<tr class="same">
+				<td>plugins/org.teiid.designer.modeshape</td>
+				<td>10.0.0.Beta3-v20160218-1807-B4076</td>
+				<td>10.0.0.Beta3-v20160218-1807-B4076</td>
+				<td></td>
+			</tr>
+			<tr class="same">
+				<td>plugins/org.teiid.designer.query.ui</td>
+				<td>10.0.0.Beta3-v20160218-1807-B4076</td>
+				<td>10.0.0.Beta3-v20160218-1807-B4076</td>
+				<td></td>
+			</tr>
+			<tr class="same">
+				<td>plugins/org.teiid.designer.relational</td>
+				<td>10.0.0.Beta3-v20160218-1807-B4076</td>
+				<td>10.0.0.Beta3-v20160218-1807-B4076</td>
+				<td></td>
+			</tr>
+			<tr class="same">
+				<td>plugins/org.teiid.designer.relational.ui</td>
+				<td>10.0.0.Beta3-v20160218-1807-B4076</td>
+				<td>10.0.0.Beta3-v20160218-1807-B4076</td>
+				<td></td>
+			</tr>
+			<tr class="same">
+				<td>plugins/org.teiid.designer.roles.ui</td>
+				<td>10.0.0.Beta3-v20160218-1807-B4076</td>
+				<td>10.0.0.Beta3-v20160218-1807-B4076</td>
+				<td></td>
+			</tr>
+			<tr class="same">
+				<td>plugins/org.teiid.designer.schema.tools</td>
+				<td>10.0.0.Beta3-v20160218-1807-B4076</td>
+				<td>10.0.0.Beta3-v20160218-1807-B4076</td>
+				<td></td>
+			</tr>
+			<tr class="same">
+				<td>plugins/org.teiid.designer.sdt</td>
+				<td>10.0.0.Beta3-v20160218-1807-B4076</td>
+				<td>10.0.0.Beta3-v20160218-1807-B4076</td>
+				<td></td>
+			</tr>
+			<tr class="same">
+				<td>plugins/org.teiid.designer.spi</td>
+				<td>10.0.0.Beta3-v20160218-1807-B4076</td>
+				<td>10.0.0.Beta3-v20160218-1807-B4076</td>
+				<td></td>
+			</tr>
+			<tr class="same">
+				<td>plugins/org.teiid.designer.teiidimporter.ui</td>
+				<td>10.0.0.Beta3-v20160218-1807-B4076</td>
+				<td>10.0.0.Beta3-v20160218-1807-B4076</td>
+				<td></td>
+			</tr>
+			<tr class="same">
+				<td>plugins/org.teiid.designer.tools.textimport.ui</td>
+				<td>10.0.0.Beta3-v20160218-1807-B4076</td>
+				<td>10.0.0.Beta3-v20160218-1807-B4076</td>
+				<td></td>
+			</tr>
+			<tr class="same">
+				<td>plugins/org.teiid.designer.transformation</td>
+				<td>10.0.0.Beta3-v20160218-1807-B4076</td>
+				<td>10.0.0.Beta3-v20160218-1807-B4076</td>
+				<td></td>
+			</tr>
+			<tr class="same">
+				<td>plugins/org.teiid.designer.transformation.ui</td>
+				<td>10.0.0.Beta3-v20160218-1807-B4076</td>
+				<td>10.0.0.Beta3-v20160218-1807-B4076</td>
+				<td></td>
+			</tr>
+			<tr class="same">
+				<td>plugins/org.teiid.designer.udf</td>
+				<td>10.0.0.Beta3-v20160218-1807-B4076</td>
+				<td>10.0.0.Beta3-v20160218-1807-B4076</td>
+				<td></td>
+			</tr>
+			<tr class="same">
+				<td>plugins/org.teiid.designer.udf.ui</td>
+				<td>10.0.0.Beta3-v20160218-1807-B4076</td>
+				<td>10.0.0.Beta3-v20160218-1807-B4076</td>
+				<td></td>
+			</tr>
+			<tr class="same">
+				<td>plugins/org.teiid.designer.ui</td>
+				<td>10.0.0.Beta3-v20160218-1807-B4076</td>
+				<td>10.0.0.Beta3-v20160218-1807-B4076</td>
+				<td></td>
+			</tr>
+			<tr class="same">
+				<td>plugins/org.teiid.designer.ui.common</td>
+				<td>10.0.0.Beta3-v20160218-1807-B4076</td>
+				<td>10.0.0.Beta3-v20160218-1807-B4076</td>
+				<td></td>
+			</tr>
+			<tr class="same">
+				<td>plugins/org.teiid.designer.vdb</td>
+				<td>10.0.0.Beta3-v20160218-1807-B4076</td>
+				<td>10.0.0.Beta3-v20160218-1807-B4076</td>
+				<td></td>
+			</tr>
+			<tr class="same">
+				<td>plugins/org.teiid.designer.vdb.ui</td>
+				<td>10.0.0.Beta3-v20160218-1807-B4076</td>
+				<td>10.0.0.Beta3-v20160218-1807-B4076</td>
+				<td></td>
+			</tr>
+			<tr class="same">
+				<td>plugins/org.teiid.designer.webservice</td>
+				<td>10.0.0.Beta3-v20160218-1807-B4076</td>
+				<td>10.0.0.Beta3-v20160218-1807-B4076</td>
+				<td></td>
+			</tr>
+			<tr class="same">
+				<td>plugins/org.teiid.designer.webservice.lib</td>
+				<td>10.0.0.Beta3-v20160218-1807-B4076</td>
+				<td>10.0.0.Beta3-v20160218-1807-B4076</td>
+				<td></td>
+			</tr>
+			<tr class="same">
+				<td>plugins/org.teiid.designer.webservice.ui</td>
+				<td>10.0.0.Beta3-v20160218-1807-B4076</td>
+				<td>10.0.0.Beta3-v20160218-1807-B4076</td>
+				<td></td>
+			</tr>
+			<tr class="same">
+				<td>plugins/org.teiid.designer.xml</td>
+				<td>10.0.0.Beta3-v20160218-1807-B4076</td>
+				<td>10.0.0.Beta3-v20160218-1807-B4076</td>
+				<td></td>
+			</tr>
+			<tr class="same">
+				<td>plugins/org.teiid.designer.xml.ui</td>
+				<td>10.0.0.Beta3-v20160218-1807-B4076</td>
+				<td>10.0.0.Beta3-v20160218-1807-B4076</td>
+				<td></td>
+			</tr>
+			<tr class="same">
+				<td>plugins/org.teiid.designer.xsd</td>
+				<td>10.0.0.Beta3-v20160218-1807-B4076</td>
+				<td>10.0.0.Beta3-v20160218-1807-B4076</td>
+				<td></td>
+			</tr>
+			<tr class="same">
+				<td>plugins/org.teiid.designer.xsd.ui</td>
+				<td>10.0.0.Beta3-v20160218-1807-B4076</td>
+				<td>10.0.0.Beta3-v20160218-1807-B4076</td>
+				<td></td>
+			</tr>
+			<tr class="same">
+				<td>plugins/org.teiid.runtime.client</td>
+				<td>10.0.0.Beta3-v20160218-1807-B4076</td>
+				<td>10.0.0.Beta3-v20160218-1807-B4076</td>
+				<td></td>
+			</tr>
+			<tr class="same">
+				<td>references/content</td>
+				<td>-</td>
+				<td>-</td>
+				<td></td>
+			</tr>
+			<tr class="same">
+				<td>site.proper</td>
+				<td>-</td>
+				<td>-</td>
+				<td></td>
+			</tr>
+			<tr class="same">
+				<td>web/site</td>
+				<td>-</td>
+				<td>-</td>
+				<td></td>
+			</tr>
+			<tr class="same">
+				<td>withreferences/compositeArtifacts</td>
+				<td>-</td>
+				<td>-</td>
+				<td></td>
+			</tr>
+			<tr class="same">
+				<td>withreferences/compositeContent</td>
+				<td>-</td>
+				<td>-</td>
+				<td></td>
+			</tr>
+		</table>
+	</body>
+</html>

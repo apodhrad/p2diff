@@ -6,7 +6,7 @@ import java.util.Collection;
 import java.util.List;
 
 import org.apodhrad.p2diff.file.Delta;
-import org.apodhrad.p2diff.file.Folder;
+import org.apodhrad.p2diff.file.P2Folder;
 import org.apodhrad.p2diff.html.HTMLGenerator;
 
 public class P2DiffManager {
@@ -20,8 +20,8 @@ public class P2DiffManager {
 			return;
 		}
 		if (originalFile.isDirectory() && originalFile.isDirectory()) {
-			Folder originalFolder = new Folder(originalFile);
-			Folder revisedFolder = new Folder(revisedFile);
+			P2Folder originalFolder = new P2Folder(originalFile);
+			P2Folder revisedFolder = new P2Folder(revisedFile);
 
 			Collection<Delta> deltas = originalFolder.computeDeltas(revisedFolder);
 			for (Delta delta : deltas) {
@@ -35,7 +35,7 @@ public class P2DiffManager {
 					htmlGenerator.generateDiff(diffLines, delta.getPath());
 				}
 			}
-			htmlGenerator.generateDeltaReport(deltas);
+			htmlGenerator.generateDeltaReport(P2DiffForJar.asSortedList(deltas));
 			return;
 		}
 	}
